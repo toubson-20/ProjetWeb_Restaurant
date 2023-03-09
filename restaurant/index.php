@@ -11,7 +11,7 @@
     <meta name="viewport" content="width=device-width, maximum-scale=1, initial-scale=1, user-scalable=0">
 
     <!-- Site Metas -->
-    <title>Food Funday Restaurant - One page HTML Responsive</title>
+    <title>MboaFoodies</title>
     <meta name="keywords" content="">
     <meta name="description" content="">
     <meta name="author" content="">
@@ -52,7 +52,7 @@
                         <nav class="navbar navbar-default" id="mainNav">
                             <div class="navbar-header">
                                 <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-                                    <span class="sr-only">Toggle navigation</span>
+                                    <span class="sr-only">basculer dans la navigation</span>
                                     <span class="icon-bar"></span>
                                     <span class="icon-bar"></span>
                                     <span class="icon-bar"></span>
@@ -65,15 +65,15 @@
                             </div>
                             <div id="navbar" class="navbar-collapse collapse">
                                 <ul class="nav navbar-nav navbar-right">
-                                    <li class="active"><a href="#banner">Home</a></li>
-                                    <li><a href="#about">About us</a></li>
+                                    <li class="active"><a href="#banner">Accueil</a></li>
+                                    <li><a href="#about">A propos</a></li>
                                     <li><a href="#menu">Menu</a></li>
-                                    <li><a href="#our_team">Team</a></li>
-                                    <li><a href="#gallery">Gallery</a></li>
+                                    <li><a href="#our_team">Equipe</a></li>
+                                    <li><a href="#gallery">Gallerie</a></li>
                                     <li><a href="#blog">Blog</a></li>
-                                    <li><a href="#pricing">pricing</a></li>
+                                    <li><a href="#pricing">Prix</a></li>
                                     <li><a href="#reservation">Reservation</a></li>
-                                    <li><a href="#footer">Contact us</a></li>
+                                    <li><a href="#footer">Contact</a></li>
                                     <li><a href="./view/connexion/connexion.html">Connexion</a></li>
                                 </ul>
                             </div>
@@ -96,11 +96,11 @@
                 <div class="banner-static">
                     <div class="banner-text">
                         <div class="banner-cell">
-                            <h1>Dinner with us  <span class="typer" id="some-id" data-delay="200" data-delim=":" data-words="Friends:Family:Officemates" data-colors="red"></span><span class="cursor" data-cursorDisplay="_" data-owner="some-id"></span></h1>
-                            <h2>Accidental appearances </h2>
-                            <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diem nonummy nibh euismod</p>
+                            <h1>Dinner avec <span class="typer" id="some-id" data-delay="200" data-delim=":" data-words="vos amis:votre famille:vos collègues" data-colors="red"></span><span class="cursor" data-cursorDisplay="_" data-owner="some-id"></span></h1>
+                            <h2>Apparitions accidentelles </h2>
+                            <p>Découvrez une symphonie de saveurs camerounaises dans notre restaurant gastronomique</p>
                             <div class="book-btn">
-                                <a href="#reservation" class="table-btn hvr-underline-from-center">Book my Table</a>
+                                <a href="#reservation" class="table-btn hvr-underline-from-center">Reserver une table</a>
                             </div>
                             <a href="#about">
                                 <div class="mouse"></div>
@@ -123,21 +123,21 @@
             <div class="row">
                 <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                     <div class="wow fadeIn" data-wow-duration="1s" data-wow-delay="0.1s">
-                        <h2 class="block-title"> About Us </h2>
-                        <h3>IT STARTED, QUITE SIMPLY, LIKE THIS...</h3>
-                        <p> Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusm incididunt ut labore et dolore magna aliqua. Ut enim ad minim venia, nostrud exercitation ullamco. </p>
+                        <h2 class="block-title"> À propos de nous</h2>
+                        <h3>CELA A COMMENCÉ, TOUT SIMPLEMENT, COMME CECI...</h3>
+                        <p> Chez MboaFoodies, nous sommes fiers de vous offrir une expérience culinaire authentique et raffinée, inspirée par la richesse et la diversité de la cuisine camerounaise. Nous mettons un point d'honneur à sélectionner les meilleurs ingrédients locaux, à les travailler avec soin et à les mettre en valeur dans nos plats, afin de vous offrir une expérience gustative exceptionnelle. </p>
 
-                        <p> Aenean commodo ligula eget dolor aenean massa. Cum sociis nat penatibu set magnis dis parturient montes, nascetur ridiculus mus. quam felisorat, ultricies nec, Aenean commodo ligula eget dolor penatibu set magnis is parturient montes, nascetur ridiculus mus. quam felisorat, ultricies nec, pellentesque eu, pretium quis, sem. quat massa quis enim. Donec vitae sapien ut libero venenatis fauci Nullam quis ante. Etiam sit amet rci eget eros. </p>
+                        <p> Notre équipe de chefs passionnés et talentueux a à cœur de vous faire voyager à travers les différentes régions du Cameroun en revisitant les plats traditionnels avec une touche moderne et créative. Nous sommes également soucieux de vous offrir un service de qualité et une ambiance conviviale et chaleureuse, où vous pourrez profiter de notre cuisine exceptionnelle en toute sérénité. </p>
 
-                        <p> Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusm incididunt ut labore et dolore magna aliqua. Ut enim ad minim venia, nostrud exercitation ullamco. </p>
+                        <p> Que ce soit pour un dîner romantique, une soirée entre amis ou un événement spécial, nous avons à cœur de vous offrir une expérience culinaire mémorable dans un cadre élégant et confortable. Nous sommes impatients de vous accueillir chez MboaFoodies pour partager avec vous notre passion pour la gastronomie camerounaise et vous faire découvrir de nouvelles saveurs inoubliables. </p>
                     </div>
                 </div>
                 <!-- end col -->
                 <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                     <div class="wow fadeIn" data-wow-duration="1s" data-wow-delay="0.1s">
                         <div class="about-images">
-                            <img class="about-main" src="./view/images/about-main.jpg" alt="About Main Image">
-                            <img class="about-inset" src="./view/images/about-inset.jpg" alt="About Inset Image">
+                            <img class="about-main" src="./view/images/images/08242b_49a1d8cd7346474e8a370a56f2d340cf~mv2.jpg" alt="About Main Image" style="height: 400px !important; width: 400px !important">
+                            <img class="about-inset" src="./view/images/images/cuba-saute-de-porc-a-la-papaye-57.640x480.jpg" alt="About Inset Image" style="height: 200px !important; width: 200px !important">
                         </div>
                     </div>
                 </div>
@@ -153,8 +153,8 @@
             <div class="row">
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                     <div class="wow fadeIn" data-wow-duration="1s" data-wow-delay="0.1s">
-                        <h2 class="block-title color-white text-center"> Today's Special </h2>
-                        <h5 class="title-caption text-center"> Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusm incididunt ut labore et dolore magna aliqua. Ut enim ad minim venia,nostrud exercitation ullamco. </h5>
+                        <h2 class="block-title color-white text-center"> Spécialités du jour </h2>
+                        <h5 class="title-caption text-center"> Découvrez nos spécialités du jour chez MboaFoodies : Ndolé, Poulet DG et Eru. Des plats traditionnels de la cuisine camerounaise préparés avec soin par notre équipe de chefs passionnés pour vous offrir une expérience culinaire unique et mémorable. Venez déguster ces délicieuses saveurs dans un cadre élégant et convivial. </h5>
                     </div>
                     <div class="special-box">
                         <div id="owl-demo">
@@ -162,70 +162,70 @@
                                 <a href="#" class="item-hover">
                                     <div class="item-info">
                                         <div class="headline">
-                                            SALMON STEAK
+                                            NDOLE
                                             <div class="line"></div>
-                                            <div class="dit-line">Lorem ipsum dolor sit amet, consectetur adip aliqua. Ut enim ad minim venia.</div>
+                                            <div class="dit-line">À base de feuilles de légumes amères, de cacahuètes pilées et de viande ou de poisson</div>
                                         </div>
                                     </div>
                                 </a>
                                 <div class="item-img">
-                                    <img src="./view/images/special-menu-1.jpg" alt="sp-menu">
+                                    <img src="./view/images/images/Ndole.jpg" alt="sp-menu">
                                 </div>
                             </div>
                             <div class="item item-type-zoom">
                                 <a href="#" class="item-hover">
                                     <div class="item-info">
                                         <div class="headline">
-                                            ITALIAN PIZZA
+                                            POULET "DIRECTEUR GENERAL"
                                             <div class="line"></div>
-                                            <div class="dit-line">Lorem ipsum dolor sit amet, consectetur adip aliqua. Ut enim ad minim venia.</div>
+                                            <div class="dit-line">À base de poulet mijoté avec des légumes et des plantains frits</div>
                                         </div>
                                     </div>
                                 </a>
                                 <div class="item-img">
-                                    <img src="./view/images/special-menu-2.jpg" alt="sp-menu">
+                                    <img src="./view/images/images/POULET-DG-FROM-CAMEROON.jpg" alt="sp-menu">
                                 </div>
                             </div>
                             <div class="item item-type-zoom">
                                 <a href="#" class="item-hover">
                                     <div class="item-info">
                                         <div class="headline">
-                                            VEG. ROLL
+                                            ERU
                                             <div class="line"></div>
-                                            <div class="dit-line">Lorem ipsum dolor sit amet, consectetur adip aliqua. Ut enim ad minim venia.</div>
+                                            <div class="dit-line">À base de feuilles de légumes africains appelées "Okok", d'une sauce épicée à base de légumes</div>
                                         </div>
                                     </div>
                                 </a>
                                 <div class="item-img">
-                                    <img src="./view/images/special-menu-3.jpg" alt="sp-menu">
+                                    <img src="./view/images/images/Foufou-and-Eru-Miya-Lounge-768x513.jpeg" alt="sp-menu">
                                 </div>
                             </div>
                             <div class="item item-type-zoom">
                                 <a href="#" class="item-hover">
                                     <div class="item-info">
                                         <div class="headline">
-                                            SALMON STEAK
+                                            TARO SAUCE JAUNE
                                             <div class="line"></div>
-                                            <div class="dit-line">Lorem ipsum dolor sit amet, consectetur adip aliqua. Ut enim ad minim venia.</div>
+                                            <div class="dit-line">À base de taro (légume-racine riche en amidon) , et d'une sauce épicée à base d'épices locale, d'huile de palme et de poisson ou de viande</div>
                                         </div>
                                     </div>
                                 </a>
                                 <div class="item-img">
-                                    <img src="./view/images/special-menu-1.jpg" alt="sp-menu">
+                                    <img src="./view/images/images/maxresdefault.jpg" alt="sp-menu">
                                 </div>
                             </div>
                             <div class="item item-type-zoom">
                                 <a href="#" class="item-hover">
                                     <div class="item-info">
                                         <div class="headline">
-                                            VEG. ROLL
+                                            SOYA
                                             <div class="line"></div>
-                                            <div class="dit-line">Lorem ipsum dolor sit amet, consectetur adip aliqua. Ut enim ad minim venia.</div>
+                                            <div class="dit-line">À base de viande grillées et marinées, généralement du bœuf ou du poulet, servies avec une sauce épicée</div>
                                         </div>
                                     </div>
                                 </a>
                                 <div class="item-img">
-                                    <img src="./view/images/special-menu-2.jpg" alt="sp-menu">
+                                    <img src="./view/images/images/D8231C2B-FF8E-4ECF-9E25-FE07F21C589F.jpeg" alt="sp-menu">
                                 </div>
                             </div>
                         </div>
@@ -246,26 +246,26 @@
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                     <div class="wow fadeIn" data-wow-duration="1s" data-wow-delay="0.1s">
                         <h2 class="block-title text-center">
-						Our Menu 	
+						Notre Menu 	
 					</h2>
-                        <p class="title-caption text-center">There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. </p>
+                        <p class="title-caption text-center">Découvrez notre menu varié de plats traditionnels de la cuisine camerounaise, préparés avec des ingrédients frais et de qualité. De délicieuses options végétariennes sont également disponibles pour répondre aux besoins de tous nos clients. Venez déguster notre cuisine authentique dans un cadre élégant et convivial chez MboaFoodies. </p>
                     </div>
                     <div class="tab-menu">
                         <div class="slider slider-nav">
                             <div class="tab-title-menu">
-                                <h2>STARTERS</h2>
+                                <h2>ENTREES</h2>
                                 <p> <i class="flaticon-canape"></i> </p>
                             </div>
                             <div class="tab-title-menu">
-                                <h2>MAIN DISHES</h2>
+                                <h2>PLATS</h2>
                                 <p> <i class="flaticon-dinner"></i> </p>
                             </div>
                             <div class="tab-title-menu">
-                                <h2>DESERTS</h2>
+                                <h2>DESSERTS</h2>
                                 <p> <i class="flaticon-desert"></i> </p>
                             </div>
                             <div class="tab-title-menu">
-                                <h2>DRINKS</h2>
+                                <h2>BOISSONS</h2>
                                 <p> <i class="flaticon-coffee"></i> </p>
                             </div>
                         </div>
@@ -273,40 +273,40 @@
                             <div>
                                 <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 ">
                                     <div class="offer-item">
-                                        <img src="./view/images/menu-item-thumbnail-01.jpg" alt="" class="img-responsive">
+                                        <img src="./view/images/images/saladeAvocat.jpeg" alt="" class="img-responsive">
                                         <div>
-                                            <h3>GARLIC BREAD</h3>
+                                            <h3>PUREE D'AVOCAT</h3>
                                             <p>
-                                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc mollis eleifend dapibus.
+                                                Salade d'avocat, à base de d'avocats, de crudités, d'oeuf dur et d'une sauce vinaigrette maison.
                                             </p>
                                         </div>
-                                        <span class="offer-price">$8.5</span>
+                                        <span class="offer-price">7€</span>
                                     </div>
                                 </div>
                                 <!-- end col -->
                                 <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 ">
                                     <div class="offer-item">
-                                        <img src="./view/images/menu-item-thumbnail-02.jpg" alt="" class="img-responsive">
+                                        <img src="./view/images/images/macédoine.jpg" alt="" class="img-responsive">
                                         <div>
-                                            <h3>MIXED SALAD</h3>
+                                            <h3>SALADE MACEDOINE</h3>
                                             <p>
-                                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc mollis eleifend dapibus.
+                                                Salade macédoine revisitée, à base de saveurs camerounaise et d'une sauce vinaigrette maison.
                                             </p>
                                         </div>
-                                        <span class="offer-price">$25</span>
+                                        <span class="offer-price">8€</span>
                                     </div>
                                 </div>
                                 <!-- end col -->
                                 <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 ">
                                     <div class="offer-item">
-                                        <img src="./view/images/menu-item-thumbnail-03.jpg" alt="" class="img-responsive">
+                                        <img src="./view/images/images/recette-de-carottes-rapees-686834.webp" alt="" class="img-responsive">
                                         <div>
-                                            <h3>BBQ CHICKEN WINGS</h3>
+                                            <h3>SALADE MIX</h3>
                                             <p>
-                                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc mollis eleifend dapibus.
+                                                Salade faite à base de carottes, de choux, de courgettes et de notre sauce vinaigrette maison.
                                             </p>
                                         </div>
-                                        <span class="offer-price">$10</span>
+                                        <span class="offer-price">6€</span>
                                     </div>
                                 </div>
                                 <!-- end col -->
@@ -316,9 +316,9 @@
                                     <div class="offer-item">
                                         <img src="./view/images/menu-item-thumbnail-04.jpg" alt="" class="img-responsive">
                                         <div>
-                                            <h3>MEAT FEAST PIZZA</h3>
+                                            <h3>POULET BRAISE</h3>
                                             <p>
-                                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc mollis eleifend dapibus.
+                                                À base de poulet mariné, braisé à la flamme. 
                                             </p>
                                         </div>
                                         <span class="offer-price">$5</span>

@@ -771,7 +771,10 @@ html, body{ height: 100%; }
 	top:0px;
 	left:0px;
 }
-
+.item-type-zoom img {
+    width: 342px !important;
+    height: 435.26px !important;
+}
 .item-type-zoom .item-hover:hover .item-info {
     -webkit-transform: scale(1,1);
     -moz-transform: scale(1,1);

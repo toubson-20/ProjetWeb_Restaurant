@@ -1,6 +1,6 @@
 <?php
 
-include_once $_SERVER['DOCUMENT_ROOT'] . '/restaurant/controller/connexionBD.php';
+include_once '/restaurant/controller/connexionBD.php';
 
 if (isset($_POST['submit'])) {
     // Récupération des données envoyées par le formulaire

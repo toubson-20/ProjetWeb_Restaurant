@@ -3585,7 +3585,7 @@ textarea.input-group-sm>.form-control,textarea.input-group-sm>.input-group-addon
     }
 }
 .navbar-fixed-top .navbar-collapse,.navbar-fixed-bottom .navbar-collapse{
-    max-height:340px
+    max-height:1200px !important;
 }
 @media (max-device-width:480px) and (orientation:landscape){
     .navbar-fixed-top .navbar-collapse,.navbar-fixed-bottom .navbar-collapse{
