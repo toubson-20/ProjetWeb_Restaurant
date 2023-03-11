@@ -2,6 +2,7 @@
 
 // connexionBD.php
 $pdo = null; // initialiser la variable globale
+// $connect = false;
 
 function connect_to_database()
 {

@@ -1,3 +1,8 @@
+<?php
+session_start();
+$connected = $_SESSION["connected"];
+$nom = $_SESSION['name'];
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -74,7 +79,7 @@
                                     <li><a href="#pricing">Prix</a></li>
                                     <li><a href="#reservation">Reservation</a></li>
                                     <li><a href="#footer">Contact</a></li>
-                                    <li><a href="./view/connexion/connexion.html">Connexion</a></li>
+                                    <li class="connexion" id="connected"><a href="./view/connexion/connexion.html">Connexion</a></li>
                                 </ul>
                             </div>
                             <!-- end nav-collapse -->
@@ -88,8 +93,8 @@
         </header>
         <!-- end header -->
     </div>
-	<!-- end site-header -->
-	
+    <!-- end site-header -->
+
     <div id="banner" class="banner full-screen-mode parallax">
         <div class="container pr">
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
@@ -246,8 +251,8 @@
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                     <div class="wow fadeIn" data-wow-duration="1s" data-wow-delay="0.1s">
                         <h2 class="block-title text-center">
-						Notre Menu 	
-					</h2>
+                            Notre Menu
+                        </h2>
                         <p class="title-caption text-center">Découvrez notre menu varié de plats traditionnels de la cuisine camerounaise, préparés avec des ingrédients frais et de qualité. De délicieuses options végétariennes sont également disponibles pour répondre aux besoins de tous nos clients. Venez déguster notre cuisine authentique dans un cadre élégant et convivial chez MboaFoodies. </p>
                     </div>
                     <div class="tab-menu">
@@ -318,7 +323,7 @@
                                         <div>
                                             <h3>POULET BRAISE</h3>
                                             <p>
-                                                À base de poulet mariné, braisé à la flamme. 
+                                                À base de poulet mariné, braisé à la flamme.
                                             </p>
                                         </div>
                                         <span class="offer-price">$5</span>
@@ -452,8 +457,8 @@
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                     <div class="wow fadeIn" data-wow-duration="1s" data-wow-delay="0.1s">
                         <h2 class="block-title text-center">
-						Our Team 	
-					</h2>
+                            Our Team
+                        </h2>
                         <p class="title-caption text-center">There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. </p>
                     </div>
                     <div class="team-box">
@@ -531,8 +536,8 @@
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                     <div class="wow fadeIn" data-wow-duration="1s" data-wow-delay="0.1s">
                         <h2 class="block-title text-center">
-						Our Gallery	
-					</h2>
+                            Our Gallery
+                        </h2>
                         <p class="title-caption text-center">There are many variations of passages of Lorem Ipsum available </p>
                     </div>
                     <div class="gal-container clearfix">
@@ -752,8 +757,8 @@
             <div class="row">
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                     <h2 class="block-title text-center">
-					Our Blog 	
-				</h2>
+                        Our Blog
+                    </h2>
                     <div class="blog-box clearfix">
                         <div class="wow fadeIn" data-wow-duration="1s" data-wow-delay="0.1s">
                             <div class="col-md-6 col-sm-6">
@@ -848,8 +853,8 @@
             <div class="row">
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                     <h2 class="block-title text-center">
-						Pricing 	
-					</h2>
+                        Pricing
+                    </h2>
                     <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ut orci varius, elementum lectus nec, aliquam lectus. Duis neque augue, maximus in sapien ut, porta pharetra odio.</p>
                 </div>
                 <div class="panel-pricing-in">
@@ -948,8 +953,8 @@
                     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                         <div class="wow fadeIn" data-wow-duration="1s" data-wow-delay="0.1s">
                             <h2 class="block-title text-center">
-						Reservations			
-					</h2>
+                                Reservations
+                            </h2>
                         </div>
                         <h4 class="form-title">BOOKING FORM</h4>
                         <p>PLEASE FILL OUT ALL REQUIRED* FIELDS. THANKS!</p>
@@ -1127,8 +1132,8 @@
                                 <p>
                                     <i class="fa fa-mobile" aria-hidden="true"></i>
                                     <span>
-									+91 80005 89080 
-								</span>
+                                        +91 80005 89080
+                                    </span>
                                 </p>
                                 <p>
                                     <i class="fa fa-envelope" aria-hidden="true"></i>
@@ -1149,7 +1154,7 @@
                                     </li>
                                     <li>
                                         <p>Friday - Saturday </p>
-                                        <span>  11:00 AM - 5:00 PM</span>
+                                        <span> 11:00 AM - 5:00 PM</span>
                                     </li>
                                 </ul>
                             </div>
@@ -1193,6 +1198,25 @@
         </div>
     </section>
 
+    <!-- SCRIPT -->
+
+    <script>
+        var isconnected = <?php echo json_encode($connected); ?>;
+        var name = <?php echo json_encode($nom); ?>;
+        console.log(name);
+
+        if (isconnected) {
+            if (document.getElementById('connected').classList.contains('connexion')) {
+                document.getElementById('connected').classList.replace('connexion', 'profil');
+                document.getElementById('connected').getElementsByTagName('a')[0].innerText = name;
+                document.getElementById('connected').getElementsByTagName('a')[0].href = "./view/profil/profil.php";
+
+            }
+        }
+    </script>
+    <?php
+    // session_unset();
+    ?>
     <!-- ALL JS FILES -->
     <script src="./view/js/all.js"></script>
     <script src="./view/js/bootstrap.min.js"></script>

@@ -1,0 +1,266 @@
+@import url("./reset.css");
+@import url("./common.css");
+
+
+
+/* Tabbed Interface */
+
+.tabs {
+  width: 100%;
+}
+
+.tab-links {
+  display: flex;
+  align-items: center;
+  height: 52px;
+  font-size: 12px;
+  font-weight: 600;
+  color: hsl(0, 0%, 56%);
+  margin-left: 6px;
+  border-top: 1px solid hsl(0, 0%, 86%);
+  display: flex;
+  justify-content: center;
+}
+
+.tab-links li {
+  margin: 0;
+}
+
+.tab-links li a {
+  display: block;
+  padding: 10px 15px;
+  background-color: #ddd;
+  color: #333;
+  text-decoration: none;
+  border-bottom: none;
+}
+
+.tab-links li a:hover {
+  background-color: #eee;
+}
+
+.tab-links li.active a {
+  background-color: #fff;
+  border-bottom: 1px solid #fff;
+}
+
+.tab-content {
+  border: 1px solid #ccc;
+  padding: 15px;
+  text-align: center;
+}
+
+.tab {
+  display: none;
+}
+
+.tab.active {
+  display: block;
+}
+
+.profil {
+  border: 0;
+}
+input{
+  font-size: 15px;
+  font-weight: bold;
+}
+
+input[disabled] {
+  background-color: white;
+  /* Changer la couleur de fond pour indiquer que l'input est désactivé */
+  color: black;
+  /* Changer la couleur du texte pour indiquer que l'input est désactivé */
+  /* cursor: not-allowed; */
+  /* Changer le curseur pour indiquer que l'input est désactivé */
+}
+
+.contain-info {
+  display: flex; /* Utiliser le modèle de boîte flexible pour aligner les éléments */
+  flex-direction: column; /* Aligner les éléments verticalement */
+  align-items: flex-start; /* Aligner les éléments à gauche */
+  gap: 10px; /* Ajouter un espace de 10 pixels entre chaque élément */
+}
+
+.bt{
+  text-align: center !important;
+}
+
+.enrg{
+  display:none;
+}
+
+.contain-info p{
+  font-style: italic;
+}
+
+.profil {
+  width: 200px; /* Définir une largeur fixe pour les champs de saisie */
+  padding: 5px; /* Ajouter un padding pour espacer le texte du bord du champ de saisie */
+}
+
+
+/* Navigation */
+.nav-content .logo {
+  height: 29px;
+}
+.search-guide .search-placeholder {
+  color: hsl(0, 0%, 56%);
+  font-size: 14px;
+  margin-left: 6px;
+}
+.search-guide {
+  width: 215px;
+  background: hsl(0, 0%, 98%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 6px 26px;
+  border-radius: 3px;
+  border: 1px solid hsl(0, 0%, 86%);
+}
+nav .nav-content {
+  max-width: 935px;
+  margin: 0 auto;
+  height: 54px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+@media only screen and (max-width: 735px) {
+  nav .nav-content {
+    padding: 0 20px;
+  }
+}
+nav .mock {
+  height: 54px;
+}
+nav .fixed {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  background: white;
+  border-bottom: 1px solid hsl(0, 0%, 86%);
+  z-index: 1;
+}
+
+
+/* Profile */
+header {
+  margin-bottom: 44px;
+}
+.header-wrap {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  column-gap: 30px;
+}
+@media only screen and (max-width: 735px) {
+  header {
+    display: block;
+    margin-bottom: 0px;
+  }
+  .header-wrap {
+    display: flex;
+    padding: 14px;
+    column-gap: 0px;
+  }
+}
+
+.header-wrap .profile-pic {
+  height: 160px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.header-wrap .profile-pic img {
+  width: 150px;
+  height: 150px;
+  border-radius: 1000px;
+  border: 1px solid hsl(0, 0%, 86%);
+}
+@media only screen and (max-width: 735px) {
+  .header-wrap .profile-pic {
+    width: 77px;
+    height: 77px;
+    margin-right: 28px;
+  }
+  .header-wrap .profile-pic img {
+    width: 100%;
+    height: 100%;
+  }
+}
+
+.profile-info .title h2 {
+  font-size: 28px;
+  font-weight: 300;
+}
+.profile-info .title span {
+  margin-left: 8px;
+}
+.profile-info .title button {
+  margin-left: 20px;
+}
+@media only screen and (max-width: 735px) {
+  .profile-info .title h2 {
+    display: inline-block;
+    margin-bottom: 12px;
+  }
+  .profile-info .title span {
+    display: inline-block;
+  }
+  .profile-info .title button {
+    display: block;
+    margin-left: 0px;
+  }
+}
+.profile-info .title {
+  display: flex;
+  align-items: center;
+}
+@media only screen and (max-width: 735px) {
+  .profile-info .title {
+    display: block;
+  }
+}
+.profile-info .details li {
+  font-size: 16px;
+  font-weight: 400;
+  margin-right: 40px;
+}
+.profile-info .details li span {
+  font-weight: 600;
+}
+.profile-info .details ul {
+  display: flex;
+}
+.profile-info .descriptions h1 {
+  font-weight: 600;
+  line-height: 24px;
+}
+.profile-info .descriptions span {
+  font-weight: 400;
+  line-height: 24px;
+}
+.profile-info .descriptions a {
+  color: hsl(209, 100%, 21%);
+}
+@media only screen and (max-width: 735px) {
+  .profile-info .descriptions {
+    padding-left: 16px;
+    padding-bottom: 21px;
+    font-size: 14px;
+    margin-bottom: 0px !important;
+  }
+  .profile-info .descriptions h1 {
+    line-height: 20px;
+  }
+  .profile-info .descriptions span {
+    line-height: 20px;
+  }
+}
+.profile-info .row {
+  margin-bottom: 20px;
+}
+.profile-info .row.last {
+  margin-bottom: 0px;
+}
