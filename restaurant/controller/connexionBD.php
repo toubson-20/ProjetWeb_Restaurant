@@ -22,7 +22,7 @@ function connect_to_database()
             PDO::ATTR_EMULATE_PREPARES => false,
         ];
         $pdo = new PDO($dsn, $utilisateur, $motDePasse, $options);
-        echo "La connexion à la base de données a réussi !";
+        return $pdo;
     } catch (PDOException $e) {
         die("La connexion à la base de données a échoué : " . $e->getMessage());
     }

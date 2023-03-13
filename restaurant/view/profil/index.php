@@ -14,8 +14,6 @@ $stmt->execute(array($id));
 $user = $stmt->fetch(PDO::FETCH_ASSOC);
 
 ?>
-
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -59,6 +57,9 @@ $user = $stmt->fetch(PDO::FETCH_ASSOC);
 </head>
 
 <body>
+    <div id="loader">
+        <div id="status"></div>
+    </div>
     <div id="site-header">
         <header id="header" class="header-block-top">
             <div class="container">
@@ -67,6 +68,12 @@ $user = $stmt->fetch(PDO::FETCH_ASSOC);
                         <!-- navbar -->
                         <nav class="navbar navbar-default" id="mainNav">
                             <div class="navbar-header">
+                                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                                    <span class="sr-only">basculer dans la navigation</span>
+                                    <span class="icon-bar"></span>
+                                    <span class="icon-bar"></span>
+                                    <span class="icon-bar"></span>
+                                </button>
                                 <div class="logo">
                                     <a class="navbar-brand js-scroll-trigger logo-header" href="#">
                                         <img src="../images/logo.png" alt="">
@@ -75,28 +82,8 @@ $user = $stmt->fetch(PDO::FETCH_ASSOC);
                             </div>
                             <div id="navbar" class="navbar-collapse collapse">
                                 <ul class="nav navbar-nav navbar-right">
-                                    <li class="connexion" id="connected"><a><?php echo $name?></a></li>
-                                    <li>
-                                      <form method="post" action="profil.php">
-                                        <input type="text" style="display: none;" name="connected" value=false>
-                                        <button class="primary" style="background-color: orangered;" name="submit" type="submit">Déconnexion</button>
-                                      </form>
-
-                                      <?php
-                                      if (isset($_POST['submit'])) {
-                                        $connect = $_POST['connected'];
-
-                                        if ($connect) {
-                                          $_SESSION['connected'] = $connect;
-                                          session_unset();
-                                          echo '<script>
-                                                    document.location.href="../../index.php";
-
-                                                </script>';
-                                        }
-                                      }
-                                      ?>
-                                    </li>
+                                    <li class="connexion" id="connected"><a href="./view/connexion/connexion.html">Connexion</a></li>
+                                    <li><a href="#footer">Contact</a></li>
                                 </ul>
                             </div>
                             <!-- end nav-collapse -->
@@ -111,6 +98,7 @@ $user = $stmt->fetch(PDO::FETCH_ASSOC);
         <!-- end header -->
     </div>
     <!-- end site-header -->
+
   <nav>
     <div class="mock"></div>
     <div class="fixed">
@@ -143,11 +131,6 @@ $user = $stmt->fetch(PDO::FETCH_ASSOC);
     </div>
   </nav>
   <main>
-
-
-    <!-- ************************************* TEST PARTIES ********************************* -->
-
-    <br/><br/><br/><br/><br/><br/>
     <div class="tabs">
       <ul class="tab-links">
         <li class="active"><a href="#tab1">PROFIL</a></li>
@@ -195,6 +178,7 @@ $user = $stmt->fetch(PDO::FETCH_ASSOC);
         </div>
 
         <div id="tab2" class="tab">
+          Contenu de l'onglet 2
         </div>
 
         <div id="tab3" class="tab">
@@ -202,7 +186,7 @@ $user = $stmt->fetch(PDO::FETCH_ASSOC);
         </div>
       </div>
     </div>
-
+    <br/><br/>
 
     <script>
       // ********* Evènement sur le bouton modifier
@@ -287,8 +271,7 @@ $user = $stmt->fetch(PDO::FETCH_ASSOC);
     <!-- ********************* PANIER ******************** -->
 
   </main>
-  <div id="footer" class="footer-main" style=" position:absolute;
-   bottom:0; width:100%">
+    <div id="footer" class="footer-main">
         <div class="footer-box pad-top-70">
             <div class="container">
                 <div class="row">
@@ -408,7 +391,45 @@ $user = $stmt->fetch(PDO::FETCH_ASSOC);
         <!-- end footer-box -->
     </div>
     <!-- end footer-main -->
-    
+
+    <a href="#" class="scrollup" style="display: none;">Scroll</a>
+
+    <section id="color-panel" class="close-color-panel">
+        <a class="panel-button gray2"><i class="fa fa-cog fa-spin fa-2x"></i></a>
+        <!-- Colors -->
+        <div class="segment">
+            <h4 class="gray2 normal no-padding">Color Scheme</h4>
+            <a title="orange" class="switcher orange-bg"></a>
+            <a title="strong-blue" class="switcher strong-blue-bg"></a>
+            <a title="moderate-green" class="switcher moderate-green-bg"></a>
+            <a title="vivid-yellow" class="switcher vivid-yellow-bg"></a>
+        </div>
+    </section>
+
+    <!-- SCRIPT -->
+
+    <script>
+        var isconnected = <?php echo json_encode($connected); ?>;
+        var name = <?php echo json_encode($nom); ?>;
+        console.log(name);
+
+        if (isconnected) {
+            if (document.getElementById('connected').classList.contains('connexion')) {
+                document.getElementById('connected').classList.replace('connexion', 'profil');
+                document.getElementById('connected').getElementsByTagName('a')[0].innerText = name;
+                document.getElementById('connected').getElementsByTagName('a')[0].href = "./view/profil/profil.php";
+
+            }
+        }
+    </script>
+    <?php
+    // session_unset();
+    ?>
+    <!-- ALL JS FILES -->
+    <script src="../js/all.js"></script>
+    <script src="../js/bootstrap.min.js"></script>
+    <!-- ALL PLUGINS -->
+    <script src="../js/custom.js"></script>
 </body>
 
 </html>

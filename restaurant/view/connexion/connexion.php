@@ -5,7 +5,7 @@ session_start();
 $_SESSION["connected"] = false;
 
 include_once  '../../controller/connexionBD.php';
-
+$pdo = connect_to_database();
 if (isset($_POST['submit'])) {
     // Récupération des données envoyées par le formulaire
     $mdp = $_POST['password'];
@@ -24,7 +24,7 @@ if (isset($_POST['submit'])) {
     // Vérification du mot de passe
     // if ($user && password_verify($mdp, $user['mdp'])) { on va l'utiliser quand on va crypter le code
     if ($user && ($mdp == $user['mdp'])) {
-        $_SESSION['name'] = $user['prenom'] . " " . $user['nom'];
+        $_SESSION['name'] = $user['preNom'] . " " . $user['nom'];
         $_SESSION['id'] = $user['Id_user'];
 
         // Connexion réussie
