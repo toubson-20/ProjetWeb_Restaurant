@@ -26,6 +26,7 @@ if (isset($_POST['submit'])) {
     if ($user && ($mdp == $user['mdp'])) {
         $_SESSION['name'] = $user['preNom'] . " " . $user['nom'];
         $_SESSION['id'] = $user['Id_user'];
+        $_SESSION['email'] = $user['login'];
 
         // Connexion réussie
         echo 'Connexion réussie !';

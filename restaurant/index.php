@@ -163,23 +163,26 @@ $nom = $_SESSION['name'];
                     </div>
                     <div class="special-box">
                         <div id="owl-demo">
-                        <?php
-                            function createElements($query, $changes, $structure){
+                            <?php
+                            function createElements($query, $changes, $structure)
+                            {
                                 include_once  '../restaurant/controller/connexionBD.php';
                                 $pdo = connect_to_database();
-                            
+
                                 // Exécution de la requête
                                 $stmt = $pdo->query($query);
-                            
+
                                 // Récupération des données
                                 $data = $stmt->fetchAll(PDO::FETCH_ASSOC);
                                 foreach ($data as &$elt) {
 
-                                    echo str_replace($changes,array($elt[$changes[0]],$elt[$changes[1]],$elt[$changes[2]],$elt[$changes[3]]),$structure);
+                                    echo str_replace($changes, array($elt[$changes[0]], $elt[$changes[1]], $elt[$changes[2]], $elt[$changes[3]]), $structure);
                                 }
                             }
-                            createElements('SELECT * FROM produit WHERE MenuJour = 1', array('Nom_produit','Description','Img','Prix'),
-                                            '<div class="item item-type-zoom">
+                            createElements(
+                                'SELECT * FROM produit WHERE MenuJour = 1',
+                                array('Nom_produit', 'Description', 'Img', 'Prix'),
+                                '<div class="item item-type-zoom">
                                                 <a href="#" class="item-hover">
                                                     <div class="item-info">
                                                         <div class="headline">
@@ -192,8 +195,9 @@ $nom = $_SESSION['name'];
                                                 <div class="item-img">
                                                     <img src="Img" alt="sp-menu">
                                                 </div>
-                                            </div>');
-                        ?>
+                                            </div>'
+                            );
+                            ?>
                         </div>
                     </div>
                     <!-- end special-box -->
@@ -237,9 +241,11 @@ $nom = $_SESSION['name'];
                         </div>
                         <div class="slider slider-single">
                             <div>
-                                <?php 
-                                    createElements("SELECT * FROM produit WHERE Type_plat = 'entree'",array('Nom_produit','Description','Img','Prix'),
-                                                    '<div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 ">
+                                <?php
+                                createElements(
+                                    "SELECT * FROM produit WHERE Type_plat = 'entree'",
+                                    array('Nom_produit', 'Description', 'Img', 'Prix'),
+                                    '<div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 ">
                                                         <div class="offer-item">
                                                             <img src="Img" alt="" class="img-responsive">
                                                             <div>
@@ -250,12 +256,15 @@ $nom = $_SESSION['name'];
                                                             </div>
                                                             <span class="offer-price">Prix€</span>
                                                         </div>
-                                                    </div>');
+                                                    </div>'
+                                );
                                 ?>
                             </div>
                             <div>
-                                <?php 
-                                    createElements("SELECT * FROM produit WHERE Type_plat = 'plat'",array('Nom_produit','Description','Img','Prix'),
+                                <?php
+                                createElements(
+                                    "SELECT * FROM produit WHERE Type_plat = 'plat'",
+                                    array('Nom_produit', 'Description', 'Img', 'Prix'),
                                     '<div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 ">
                                         <div class="offer-item">
                                             <img src="Img" alt="" class="img-responsive">
@@ -267,12 +276,15 @@ $nom = $_SESSION['name'];
                                             </div>
                                             <span class="offer-price">Prix€</span>
                                         </div>
-                                    </div>');
+                                    </div>'
+                                );
                                 ?>
                             </div>
                             <div>
-                            <?php 
-                                    createElements("SELECT * FROM produit WHERE Type_plat = 'dessert'",array('Nom_produit','Description','Img','Prix'),
+                                <?php
+                                createElements(
+                                    "SELECT * FROM produit WHERE Type_plat = 'dessert'",
+                                    array('Nom_produit', 'Description', 'Img', 'Prix'),
                                     '<div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 ">
                                         <div class="offer-item">
                                             <img src="Img" alt="" class="img-responsive">
@@ -284,12 +296,15 @@ $nom = $_SESSION['name'];
                                             </div>
                                             <span class="offer-price">Prix€</span>
                                         </div>
-                                    </div>');
+                                    </div>'
+                                );
                                 ?>
                             </div>
                             <div>
-                                <?php 
-                                    createElements("SELECT * FROM produit WHERE Type_plat = 'boisson'",array('Nom_produit','Description','Img','Prix'),
+                                <?php
+                                createElements(
+                                    "SELECT * FROM produit WHERE Type_plat = 'boisson'",
+                                    array('Nom_produit', 'Description', 'Img', 'Prix'),
                                     '<div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 ">
                                         <div class="offer-item">
                                             <img src="Img" alt="" class="img-responsive">
@@ -301,7 +316,8 @@ $nom = $_SESSION['name'];
                                             </div>
                                             <span class="offer-price">Prix€</span>
                                         </div>
-                                    </div>');
+                                    </div>'
+                                );
                                 ?>
                             </div>
                         </div>
@@ -329,8 +345,10 @@ $nom = $_SESSION['name'];
                     <div class="team-box">
 
                         <div class="row">
-                            <?php 
-                                createElements("SELECT * FROM employe,users WHERE employe.Id_user = users.Id_user",array('nom','preNom','Description','Img'),
+                            <?php
+                            createElements(
+                                "SELECT * FROM employe,users WHERE employe.Id_user = users.Id_user",
+                                array('nom', 'preNom', 'Description', 'Img'),
                                 '<div class="col-md-4 col-sm-6">
                                     <div class="sf-team">
                                         <div class="thumb">
@@ -346,7 +364,8 @@ $nom = $_SESSION['name'];
                                             </ul>
                                         </div>
                                     </div>
-                                </div>');
+                                </div>'
+                            );
                             ?>
                         </div>
                         <!-- end row -->
@@ -379,37 +398,37 @@ $nom = $_SESSION['name'];
                         <form method="POST" class="reservations-box" name="contactform" action="../restaurant/reservation.php">
                             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                                 <div class="form-box">
-                                    <input type="text" name="form_name" id="form_name" placeholder="Nom" required="required" data-error="Nom est requis.">
+                                    <?php echo '<input type="text" name="form_name" id="form_name" placeholder="' . $nom . '" value="' . $nom . '" required="required" data-error="Nom est requis.">'; ?>
                                 </div>
                             </div>
                             <!-- end col -->
                             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                                 <div class="form-box">
-                                    <input type="email" name="email" id="email" placeholder="E-Mail" required="required" data-error="E-mail est requis">
+                                    <?php echo '<input type="email" name="email" id="email" placeholder="E-Mail" required="required" data-error="E-mail est requis">' ?>
                                 </div>
                             </div>
                             <!-- end col -->
                             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                                 <div class="form-box">
-                                    <input type="text" name="phone" id="phone" placeholder="Telephone">
+                                    <?php echo '<input type="text" name="phone" id="phone" placeholder="Telephone">' ?>
                                 </div>
                             </div>
                             <!-- end col -->
                             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                                 <div class="form-box">
-                                    <input type="number" name="no_persons" id="no_persons" placeholder="Nombre de personnes" required="required" maxlength="10">
+                                    <?php echo '<input type="number" name="no_persons" id="no_persons" placeholder="Nombre de personnes" required="required" maxlength="10">' ?>
                                 </div>
                             </div>
                             <!-- end col -->
                             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                                 <div class="form-box">
-                                    <input type="text" name="date" id="date-picker" placeholder="Date" required="required" data-error="Date est requis" />
+                                    <?php echo '<input type="text" name="date" id="date-picker" placeholder="Date" required="required" data-error="Date est requis" />' ?>
                                 </div>
                             </div>
                             <!-- end col -->
                             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                                 <div class="form-box">
-                                    <input type="text" name="time" id="time-picker" placeholder="Heure" required="required" data-error="Time is requis" />
+                                    <?php echo '<input type="text" name="time" id="time-picker" placeholder="Heure" required="required" data-error="Time is requis" />' ?>
                                 </div>
                             </div>
                             <!-- end col -->
