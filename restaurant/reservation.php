@@ -1,5 +1,13 @@
 <?php
 session_start();
+
+// Vérifier si l'utilisateur a les droits nécessaires pour accéder à la page
+if (!$_SESSION["connected"]) {
+  // Rediriger l'utilisateur vers une autre page
+  header('Location: ../../index.php');
+  exit;
+}
+
 $id_user = $_SESSION['id'];
 include_once '../restaurant/controller/connexionBD.php';
 $pdo = connect_to_database();
@@ -19,14 +27,11 @@ if (isset($_POST['submit'])) {
         if ($id_user != null) {
             // Préparer la requête SQL
             $pdo->beginTransaction();
-            // Insertion dans la première table
-            $query1 = $pdo->prepare("INSERT INTO client (Id_user) VALUES (?)");
-            $query1->execute([$id_user]);
-            // Validation de la transaction
-            if ($pdo->commit()) {
+
                 echo "<br>Insertion client OK";
                 $query2 = $pdo->prepare("SELECT Id_client FROM client WHERE Id_user = ?");
                 $query2->execute([$id_user]);
+            if ($pdo->commit()) {
                 $resp = $query2->fetch(PDO::FETCH_ASSOC);
                 echo "<br>Réccupération de l'id du client OK";
 
@@ -38,19 +43,18 @@ if (isset($_POST['submit'])) {
                     echo "<br>Insertion table_reserver OK";
                     $query4 = $pdo->prepare("SELECT Id_table FROM table_reserver WHERE Id_client = ?");
                     $query4->execute([$resp['Id_client']]);
-                    $resp2 = $query4->fetch(PDO::FETCH_ASSOC);
+                    $resp2 = $query4->fetchAll(PDO::FETCH_ASSOC);
+                    var_dump($resp2);
                     echo "<br>Réccupération de l'id de la table reservé OK";
 
                     $pdo->beginTransaction();
                     // Insertion dans la deuxième table
                     $query4 = $pdo->prepare("INSERT INTO reserver (Id_table, Id_client, Heure_resa, Date_resa, Nb_personnes, Emplacement, Occasion) VALUES (?, ?, ?, ?, ?, ?, ?)");
-                    $query4->execute([$resp2['Id_table'], $resp['Id_client'], $heure, $date, intval($no_of_persons), $emplement, $occasion]);
+                    $query4->execute([$resp2[end(array_keys($resp2))]['Id_table'], $resp['Id_client'], $heure, $date, intval($no_of_persons), $emplement, $occasion]);
                     if ($pdo->commit()) {
                         echo "<br>Insertion reserver OK<br>Votre table a été reservée";
                     }
                 }
-            } else {
-                echo "Une erreur s'est produite lors de l'ajout des données.";
             }
         }
     }

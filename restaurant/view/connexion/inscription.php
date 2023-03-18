@@ -1,5 +1,5 @@
 <?php
-
+session_start();
 include_once  '../../controller/connexionBD.php';
 $pdo = connect_to_database();
 
@@ -52,13 +52,32 @@ if (isset($_POST['submit'])) {
         // Exécuter la requête SQL
         if ($stmt->execute()) {
             echo "Les données ont été ajoutées avec succès !";
+
+            // Réccupération de l'id de l'utilisateur
+            $stmt = $pdo->prepare('SELECT Id_user FROM users WHERE login = ?');
+            $stmt->execute(array($email));
+
+            // Récupération du résultat
+            $user = $stmt->fetch(PDO::FETCH_ASSOC);
         } else {
             echo "Une erreur s'est produite lors de l'ajout des données.";
         }
 
         $stmts = $pdo->prepare('INSERT INTO client(Id_user) VALUES(:id)');
-        $stmts->bindParam(':id', $id);
+        $stmts->bindParam(':id', $user['Id_user']);
 
-        $stmts->execute();
+        if($stmts->execute()){
+            $_SESSION['name'] = $prenom . " " . $nom;
+            $_SESSION['id'] = $user['Id_user'];
+            $_SESSION['email'] = $email;
+            $_SESSION['role'] = "";
+            $_SESSION['connected'] = true;
+
+            echo '<br>' . $_SESSION["name"];
+            echo '<script>
+            document.location.href="../../index.php";
+
+        </script>';
+        }
     }
 }

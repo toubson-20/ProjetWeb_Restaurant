@@ -2,6 +2,8 @@
 session_start();
 $connected = $_SESSION["connected"];
 $nom = $_SESSION['name'];
+  
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -20,15 +22,14 @@ $nom = $_SESSION['name'];
     <meta name="keywords" content="">
     <meta name="description" content="">
     <meta name="author" content="">
-
-    <!-- Site Icons -->
-    <link rel="shortcut icon" href="./view/images/favicon.ico" type="image/x-icon" />
-    <link rel="apple-touch-icon" href="./view/images/apple-touch-icon.png">
+    <link rel="stylesheet" href="./view/css/productPage.css">
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="./view/css/bootstrap.min.css">
+
     <!-- Site CSS -->
     <link rel="stylesheet" href="./view/css/style.css">
+    <link rel="stylesheet" href="./view/css/newStyle.css">
     <!-- Responsive CSS -->
     <link rel="stylesheet" href="./view/css/responsive.css">
     <!-- color -->
@@ -37,11 +38,11 @@ $nom = $_SESSION['name'];
     <!-- Modernizer -->
     <script src="./view/js/modernizer.js"></script>
 
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <!--[if lt IE 9]>
       <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
       <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
-
 </head>
 
 <body>
@@ -74,9 +75,6 @@ $nom = $_SESSION['name'];
                                     <li><a href="#about">A propos</a></li>
                                     <li><a href="#menu">Menu</a></li>
                                     <li><a href="#our_team">Equipe</a></li>
-                                    <li><a href="#gallery">Gallerie</a></li>
-                                    <li><a href="#blog">Blog</a></li>
-                                    <li><a href="#pricing">Prix</a></li>
                                     <li><a href="#reservation">Reservation</a></li>
                                     <li><a href="#footer">Contact</a></li>
                                     <li class="connexion" id="connected"><a href="./view/connexion/connexion.html">Connexion</a></li>
@@ -240,6 +238,16 @@ $nom = $_SESSION['name'];
                                 <p> <i class="flaticon-coffee"></i> </p>
                             </div>
                         </div>
+                        <div id="id01" class="modal">
+                            <form class="modal-content animate" action="/action_page.php" method="post">
+                                <div class="imgcontainer">
+                                    <span onclick="fermer()" class="modalSpan close" title="Close Modal">&times;</span>
+                                </div>
+
+                                <div class="container" id="productModal">
+                                </div>
+                            </form>
+                        </div>
                         <div class="slider slider-single">
                             <div>
                                 <?php
@@ -247,19 +255,20 @@ $nom = $_SESSION['name'];
                                     "SELECT * FROM produit WHERE Type_plat = 'entree'",
                                     array('Nom_produit', 'Description', 'Img', 'Prix'),
                                     '<div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 ">
-                                                        <div class="offer-item">
-                                                            <img src="Img" alt="" class="img-responsive">
-                                                            <div>
-                                                                <h3>Nom_produit</h3>
-                                                                <p>
-                                                                    Description
-                                                                </p>
-                                                            </div>
-                                                            <span class="offer-price">Prix€</span>
+                                                    <div class="offer-item">
+                                                        <img src="Img" alt="" class="img-responsive"  onclick="ouvrir(\'Nom_produit\', \'Prix\', \'Description\', \'Img\')">
+                                                        <div>
+                                                            <h3>Nom_produit</h3>
+                                                            <p>
+                                                                Description
+                                                            </p>
                                                         </div>
-                                                    </div>'
+                                                        <span class="offer-price">Prix€</span>
+                                                    </div>
+                                                </div>'
                                 );
                                 ?>
+
                             </div>
                             <div>
                                 <?php
@@ -268,7 +277,7 @@ $nom = $_SESSION['name'];
                                     array('Nom_produit', 'Description', 'Img', 'Prix'),
                                     '<div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 ">
                                         <div class="offer-item">
-                                            <img src="Img" alt="" class="img-responsive">
+                                            <img src="Img" alt="" class="img-responsive" onclick="ouvrir(\'Nom_produit\', \'Prix\', \'Description\', \'Img\')">
                                             <div>
                                                 <h3>Nom_produit</h3>
                                                 <p>
@@ -288,7 +297,7 @@ $nom = $_SESSION['name'];
                                     array('Nom_produit', 'Description', 'Img', 'Prix'),
                                     '<div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 ">
                                         <div class="offer-item">
-                                            <img src="Img" alt="" class="img-responsive">
+                                            <img src="Img" alt="" class="img-responsive" onclick="ouvrir(\'Nom_produit\', \'Prix\', \'Description\', \'Img\')">
                                             <div>
                                                 <h3>Nom_produit</h3>
                                                 <p>
@@ -308,7 +317,7 @@ $nom = $_SESSION['name'];
                                     array('Nom_produit', 'Description', 'Img', 'Prix'),
                                     '<div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 ">
                                         <div class="offer-item">
-                                            <img src="Img" alt="" class="img-responsive">
+                                            <img src="Img" alt="" class="img-responsive" onclick="ouvrir(\'Nom_produit\', \'Prix\', \'Description\', \'Img\')">
                                             <div>
                                                 <h3>Nom_produit</h3>
                                                 <p>
@@ -613,9 +622,10 @@ $nom = $_SESSION['name'];
     <!-- SCRIPT -->
 
     <script>
+
         var isconnected = <?php echo json_encode($connected); ?>;
         var name = <?php echo json_encode($nom); ?>;
-        console.log(name);
+        //console.log(name);
 
         if (isconnected) {
             if (document.getElementById('connected').classList.contains('connexion')) {
@@ -632,8 +642,51 @@ $nom = $_SESSION['name'];
     <!-- ALL JS FILES -->
     <script src="./view/js/all.js"></script>
     <script src="./view/js/bootstrap.min.js"></script>
+    <script src="./view/js/productPage.js"></script>
     <!-- ALL PLUGINS -->
     <script src="./view/js/custom.js"></script>
+
+
+    <script>
+        function fermer() {
+            document.getElementById("id01").style.display = "none";
+            document.getElementById("header").style.display = "block"
+        }
+
+        // Get the modal
+        var modal = document.getElementById('id01');
+
+        // When the user clicks anywhere outside of the modal, close it
+        window.onclick = function(event) {
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        }
+    </script>
+
+    <script>
+        function ouvrir(nom, prix, description, img) {
+            document.getElementById("id01").style.display = "block";
+            document.getElementById("header").style.display = "none";
+            $.ajax({
+                url: "./view/pageProduit.php",
+                type: "POST",
+                data: {
+                    nom: nom,
+                    description: description,
+                    prix: prix,
+                    img: img
+                },
+                success: function(result) {
+                    // Afficher la réponse de la pageB dans la console
+                    document.getElementById('productModal').innerHTML = result;
+                },
+                error: function() {
+                    alert("Une erreur s'est produite.");
+                }
+            });
+        }
+    </script>
 </body>
 
 </html>
