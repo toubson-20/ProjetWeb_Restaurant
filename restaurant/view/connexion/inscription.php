@@ -1,6 +1,7 @@
 <?php
 
-include_once '/restaurant/controller/connexionBD.php';
+include_once  '../../controller/connexionBD.php';
+$pdo = connect_to_database();
 
 if (isset($_POST['submit'])) {
     // Récupération des données envoyées par le formulaire
@@ -54,5 +55,10 @@ if (isset($_POST['submit'])) {
         } else {
             echo "Une erreur s'est produite lors de l'ajout des données.";
         }
+
+        $stmts = $pdo->prepare('INSERT INTO client(Id_user) VALUES(:id)');
+        $stmts->bindParam(':id', $id);
+
+        $stmts->execute();
     }
 }
