@@ -1,9 +1,7 @@
 <?php
 session_start();
-if(isset($_SESSION['name']) && !empty($_SESSION['name'])) {
-    $connected = $_SESSION["connected"];
-    $nom = $_SESSION['name'];
-}
+$connected = $_SESSION["connected"];
+$nom = $_SESSION['name'];
   
 
 ?>

@@ -4,57 +4,86 @@
 
 
 /* Style des accordeons */
-.accordion {
-  background-color: #eee;
-  color: #444;
-  cursor: pointer;
-  padding: 18px;
-  width: 100%;
-  border: none;
-  text-align: left;
+#accordion a:hover,#accordion a:focus{
+  text-decoration: none;
   outline: none;
+}
+#accordion .panel{
+ 
+  width: 98% !important;
+}
+#accordion .panel-heading{
+  padding: 0;
+  border: none;
+  border-radius: 5px;
+  background: transparent;
+  position: relative;
+}
+#accordion .panel-title a{
+  display: block;
+  padding: 20px 30px;
+  margin: 0;
+  background: rgba(0,0,0,0.4);
+  font-size: 17px;
+  font-weight: bold;
+  color: #fff;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  border: none;
+  border-radius: 5px;
+  position: relative;
+}
+#accordion .panel-title a.collapsed{ border: none; }
+#accordion .panel-title a:before,
+#accordion .panel-title a.collapsed:before{
+  content: "\002BC6";
+  font-family: "Font Awesome 5 Free";
+  width: 30px;
+  height: 30px;
+  line-height: 27px;
+  text-align: center;
+  font-size: 25px;
+  font-weight: 900;
+  color: #fff;
+  position: absolute;
+  top: 15px;
+  right: 30px;
+  transform: rotate(180deg);
+  transition: all .4s cubic-bezier(0.080, 1.090, 0.320, 1.275);
+}
+#accordion .panel-title a.collapsed:before{
+  color: rgba(255,255,255,0.5);
+  transform: rotate(0deg);
+}
+#accordion .panel-body{
+  padding: 20px;
   font-size: 15px;
-  transition: 0.4s;
-}
-
-/* Style du contenu des accordeons */
-.panel {
-  padding: 0 18px;
-  background-color: white;
-  display: none;
-  overflow: hidden;
-}
-
-/* Style pour changer l'apparence lorsqu'un accordeon est ouvert */
-.accordion-active, .accordion:hover {
-	background-color: #ccc;
-}
-
-.accordion-active:after {
-	content: "\2212";
-	font-size: 13px;
-	color: white;
-	float: right;
-	margin-left: 5px;
+  color: #000;
+  line-height: 28px;
+  letter-spacing: 1px;
+  border-top: none;
+  border-radius: 5px;
 }
 
 /* Tabbed Interface */
 
+/* La barre d'onglets */
 .tabs {
   width: 100%;
+  float: left !important;
 }
 
 .tab-links {
   display: flex;
   align-items: center;
   height: 52px;
-  font-size: 12px;
-  font-weight: 600;
-  color: hsl(0, 0%, 56%);
-  margin-left: 6px;
-  border-top: 1px solid hsl(0, 0%, 86%);
-  display: flex;
+  font-size: 14px;
+  font-weight: 500;
+  color: #333;
+  border: 1px solid #e6e6e6;
+  border-bottom: none;
   justify-content: center;
+  background-color: #f8f8f8;
 }
 
 .tab-links li {
@@ -63,26 +92,31 @@
 
 .tab-links li a {
   display: block;
-  padding: 10px 15px;
-  background-color: #ddd;
-  color: #333;
+  padding: 10px 20px;
+  color: #666;
   text-decoration: none;
   border-bottom: none;
+  transition: all 0.2s ease-in-out;
 }
 
 .tab-links li a:hover {
-  background-color: #eee;
+  background-color: #f1f1f1;
+  color: #333;
 }
 
 .tab-links li.active a {
   background-color: #fff;
-  border-bottom: 1px solid #fff;
+  border-bottom: 2px solid #333;
+  color: #333;
 }
 
+/* Le contenu des onglets */
 .tab-content {
-  border: 1px solid #ccc;
-  padding: 15px;
-  text-align: center;
+  border: 1px solid #e6e6e6;
+  padding: 20px;
+  background-color: #fff;
+  margin-top: -1px;
+  box-shadow: 0 2px 2px rgba(0, 0, 0, 0.1);
 }
 
 .tab {
@@ -92,6 +126,17 @@
 .tab.active {
   display: block;
 }
+
+/* Médias requêtes pour une meilleure adaptabilité */
+@media screen and (max-width: 768px) {
+  .tab-links {
+    font-size: 12px;
+  }
+  .tab-links li a {
+    padding: 10px 15px;
+  }
+}
+
 
 .profil {
   border: 0;
@@ -298,4 +343,283 @@ header {
 }
 .profile-info .row.last {
   margin-bottom: 0px;
+}
+
+.table-scroll {
+  overflow: auto;
+}
+
+/*Actions buttons*/
+.btn-group {
+  display: flex;
+}
+
+.btn-group a {
+  color: #333;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  padding: 5px 10px;
+  border-radius: 4px;
+  margin-right: 5px;
+  display: inline-block;
+}
+
+
+
+.btn-group a span {
+  font-size: 16px;
+}
+
+/* Info-bulles */
+.tooltip {
+  position: relative;
+  display: inline-block;
+}
+
+.tooltip .tooltiptext {
+  visibility: hidden;
+  width: 120px;
+  background-color: #333;
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 5px 0;
+  position: absolute;
+  z-index: 1;
+  bottom: 125%;
+  left: 50%;
+  margin-left: -60px;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.tooltip .tooltiptext::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  margin-left: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: #333 transparent transparent transparent;
+}
+
+.tooltip:hover .tooltiptext {
+  visibility: visible;
+  opacity: 1;
+}
+
+/* Accordion 2*/
+.formAjout {
+  width: 80%;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.form-group {
+  display: flex;
+}
+.formAjout label {
+  display: inline-block;
+  width: 30%;
+  font-weight: bold;
+  margin-bottom: 10px;
+  text-align: left;
+  padding-right: 10px;
+}
+
+.formAjout input[type="text"],
+.formAjout textarea,
+.formAjout select, .formAjout input[type="number"]{
+  display: inline-block;
+  width: 70%;
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+
+}
+
+.formAjout input[type="checkbox"] {
+  display: inline-block;
+  width: auto;
+  margin-left: 10px;
+}
+
+.formAjout input[type="submit"] {
+  display: block;
+  background-color: #4CAF50;
+  color: white;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 20px;
+}
+
+.formAjout input[type="submit"]:hover {
+  background-color: #3e8e41;
+}
+
+
+/* GRAPHS */
+.chart-container {
+	width: 100%;
+  margin: 0 auto !important;
+}
+
+
+
+/*TABLES*/
+table {
+  width: 100%;
+  max-width: 800px !important;
+  margin: 0 auto;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 16px;
+  color: #222;
+  border: none !important;
+}
+
+th, td {
+  border: none !important;
+  padding: 15px 20px;
+  text-align: left;
+}
+
+th {
+  background-color: #e7eff6;
+  font-weight: bold;
+  color: #6682c3;
+  text-transform: uppercase;
+}
+
+tr:nth-child(even) {
+  background-color: #f5f5f5;
+}
+
+tr:hover {
+  background-color: #e7eff6;
+}
+.reduce {
+  max-width: 100px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.reduce.tooltip {
+  position: relative;
+}
+.reduce.tooltip:hover::before {
+  content: attr(title);
+  position: absolute;
+  background-color: black;
+  color: white;
+  padding: 4px;
+  border-radius: 4px;
+  font-size: 12px;
+  top: -20px;
+  left: 0;
+}
+@media (max-width: 768px) {
+  table {
+    font-size: 14px;
+  }
+  th, td {
+    padding: 10px 15px;
+  }
+}
+
+@media (max-width: 480px) {
+  table {
+    font-size: 12px;
+  }
+  th, td {
+    padding: 8px 10px;
+  }
+}
+
+/* DASHBOARD */
+.bodyDash * {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+.bodyDash{
+  font-family: Arial, sans-serif;
+  background-color: #f7f7f7;
+  color: #444;
+}
+
+.bodyDash h1 {
+  font-size: 24px;
+  font-weight: 600;
+  margin: 20px;
+}
+
+.containerDash {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 20px;
+}
+
+.cardDash {
+  background-color: #fff;
+  border-radius: 5px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  margin: 20px;
+  padding: 20px;
+  flex-basis: calc(50% - 40px);
+}
+
+.card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.card-header h2 {
+  font-size: 18px;
+  font-weight: 500;
+}
+
+.card-header button {
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  font-size: 14px;
+  font-weight: 600;
+  padding: 8px 12px;
+  cursor: pointer;
+}
+
+.card-body {
+  height: 200px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 36px;
+  font-weight: 600;
+}
+
+.graphDash {
+  background-color: #fff;
+  border-radius: 5px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  flex-basis: calc(50% - 40px);
+  height: 400px;
+  margin: 20px;
+}
+
+/* IFADMIN */
+.ifAdmin{
+  display: none;
+}
+header {
+  position: fixed !important;
 }
