@@ -1,7 +1,9 @@
 <?php
 session_start();
-$connected = $_SESSION["connected"];
-$nom = $_SESSION['name'];
+if(isset($_SESSION['name']) && !empty($_SESSION['name'])) {
+    $connected = $_SESSION["connected"];
+    $nom = $_SESSION['name'];
+}
   
 
 ?>
@@ -78,7 +80,6 @@ $nom = $_SESSION['name'];
                                     <li><a href="#reservation">Reservation</a></li>
                                     <li><a href="#footer">Contact</a></li>
                                     <li class="connexion" id="connected"><a href="./view/connexion/connexion.html">Connexion</a></li>
-                                    <li><a href="./view/statistique.php">Statistique</a></li>
                                 </ul>
                             </div>
                             <!-- end nav-collapse -->
