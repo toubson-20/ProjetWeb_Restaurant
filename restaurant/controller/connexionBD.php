@@ -23,9 +23,10 @@ function connect_to_database()
         ];
         $pdo = new PDO($dsn, $utilisateur, $motDePasse, $options);
         echo "La connexion à la base de données a réussi !";
+        return $pdo;
     } catch (PDOException $e) {
         die("La connexion à la base de données a échoué : " . $e->getMessage());
     }
 }
 
-connect_to_database(); // appeler la fonction pour initialiser la variable globale
+//connect_to_database(); // appeler la fonction pour initialiser la variable globale
