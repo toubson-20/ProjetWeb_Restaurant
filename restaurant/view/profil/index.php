@@ -182,7 +182,24 @@ $user = $stmt->fetch(PDO::FETCH_ASSOC);
         </div>
 
         <div id="tab3" class="tab">
-          Contenu de l'onglet 3
+                                <?php   
+                    // Afficher le contenu du panier
+                    if (count($_SESSION['panier']) > 0) {
+                    foreach ($_SESSION['panier'] as $produit) {
+                        echo '<div class="produit">';
+                        echo '<img src="' . $produit['img'] . '" alt="' . $produit['nom'] . '">';
+                        echo '<h3>' . $produit['nom'] . '</h3>';
+                        echo '<p>' . $produit['description'] . '</p>';
+                        echo '<p>Prix : ' . $produit['prix'] . ' €</p>';
+                        echo '</div>';
+                    }
+                    } else {
+                    echo '<p>Votre panier est vide.</p>';
+                    }
+                    ?>
+                    
+
+
         </div>
       </div>
     </div>

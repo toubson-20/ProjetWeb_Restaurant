@@ -39,7 +39,7 @@ $user = $stmt->fetch(PDO::FETCH_ASSOC);
 
   <!-- Bootstrap CSS -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" integrity="sha512-WWn1vE5ulX9mZnKfso8oxqWjQv6ZMz9ZJx6U8zz6jtYv6yBhSywOmd6LHTbFwkfS+5Z5G5so0z8j0WY4v4ROlQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" integrity="sha512-WWn1vE5ulX9mZnKfso8oxqWjQv6ZMz9ZJx6U8zz6jtYv6yBhSywOmd6LHTbFwkfS+5Z5G5so0z8j0WY4v4ROlQ==" crossorigin="anonymous" referrerpolicy="no-referrer" /> -->
   <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
   <!-- Site CSS -->
@@ -52,6 +52,9 @@ $user = $stmt->fetch(PDO::FETCH_ASSOC);
 
   <!-- Modernizer -->
   <script src="../js/modernizer.js"></script>
+
+  <!-- Script -->
+  <script src="../js/commander.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
 
   <!--[if lt IE 9]>
@@ -78,11 +81,11 @@ $user = $stmt->fetch(PDO::FETCH_ASSOC);
               <div id="navbar" class="navbar-collapse collapse">
                 <ul class="nav navbar-nav navbar-right">
                   <li class="connexion" id="connected"><a id="userName"><?php echo $name ?></a></li>
-                  <li>
-                    <form method="post" action="profil.php">
+                  <li sytle="cursor:pointer !important;">
+                  <a id="userName" sytle="cursor:pointer !important;"><form method="post" action="profil.php">
                       <input type="text" style="display: none;" name="connected" value=false>
-                      <button class="primary" style="background-color: orangered;" name="submit" type="submit">Déconnexion</button>
-                    </form>
+                      <button  name="submit" type="submit" sytle="cursor:pointer !important;">Déconnexion</button>
+                    </form></a>
 
                     <?php
                     if (isset($_POST['submit'])) {
@@ -124,8 +127,8 @@ $user = $stmt->fetch(PDO::FETCH_ASSOC);
         <li class="active"><a href="#tab1">PROFIL</a></li>
         <li><a href="#tab2">RESERVATIONS</a></li>
         <li><a href="#tab3">PANIER</a></li>
-        <li class = "ifAdmin"><a href="#tab4">PRODUIT</a></li>
-        <li class = "ifAdmin"><a href="#tab5">STATISTIQUES</a></li>
+        <li class="ifAdmin"><a href="#tab4">PRODUIT</a></li>
+        <li class="ifAdmin"><a href="#tab5">STATISTIQUES</a></li>
       </ul>
 
       <div class="tab-content">
@@ -169,29 +172,29 @@ $user = $stmt->fetch(PDO::FETCH_ASSOC);
               $statement = $pdo->query('SELECT Id_client FROM client WHERE Id_user = ' . $id);
               $statement->execute();
               if (!$statement) {
-                echo("Une erreur est survenue<br>");
-              }else{
+                echo ("Une erreur est survenue<br>");
+              } else {
                 $id_user = $statement->fetch(PDO::FETCH_ASSOC);
               }
               if (!$id_user) {
-                echo("Vous n'êtes pas client<br>");
-              }else{
+                echo ("Vous n'êtes pas client<br>");
+              } else {
                 // Récupérer les réservations du client en question
                 $statement = $pdo->query('SELECT * FROM reserver WHERE Id_client = ' . $id_user['Id_client']);
               }
-              
+
               if (!$statement) {
-                echo("La recupération des données a échoué<br>");
-              }else{
-                  while ($val = $statement->fetch()) {
-                    echo '<tr>';
-                    echo '<td>' . $val['Date_resa'] . '</td>';
-                    echo '<td>' . $val['Heure_resa'] . '</td>';
-                    echo '<td>' . $val['Nb_personnes'] . '</td>';
-                    echo '<td>' . $val['Emplacement'] . '</td>';
-                    echo '<td>' . $val['Occasion'] . '</td>';
-                    echo '</tr>';
-                  }
+                echo ("La recupération des données a échoué<br>");
+              } else {
+                while ($val = $statement->fetch()) {
+                  echo '<tr>';
+                  echo '<td>' . $val['Date_resa'] . '</td>';
+                  echo '<td>' . $val['Heure_resa'] . '</td>';
+                  echo '<td>' . $val['Nb_personnes'] . '</td>';
+                  echo '<td>' . $val['Emplacement'] . '</td>';
+                  echo '<td>' . $val['Occasion'] . '</td>';
+                  echo '</tr>';
+                }
               }
 
               ?>
@@ -203,15 +206,76 @@ $user = $stmt->fetch(PDO::FETCH_ASSOC);
         <!-- ********************* PANIER ******************** -->
 
         <div id="tab3" class="tab">
-          Contenu de l'onglet 3
+
+          <?php
+
+
+          // Vérifier si le panier existe dans la session
+          if (isset($_SESSION['panier'])) {
+            $panier = $_SESSION['panier'];
+          } else {
+            $panier = array();
+          }
+
+
+
+          // Afficher les données du panier dans un tableau
+
+          echo '<table>';
+          echo '<tr><th>Produit</th><th>Prix</th><th>Quantité</th></tr>';
+          $tab = [];
+          $somme = 0;
+          foreach ($panier as $produit_id) {
+            if (in_array($produit_id, $tab))
+              continue;
+            // Préparation de la requête
+            $stmt = $pdo->prepare('SELECT * FROM produit WHERE Id_Produit = ?');
+            $stmt->execute(array($produit_id));
+
+            // Récupération du résultat
+            $resultat = $stmt->fetch(PDO::FETCH_ASSOC);
+            $produitsCommandes = [];
+            $co = 0;
+            foreach ($panier as $p)
+              if ($resultat["Id_Produit"] == $p)
+                $co += 1;
+
+            $tab[] = $resultat["Id_Produit"];
+
+            $prix = $resultat['Prix'] * $co;
+            echo '<tr>';
+            echo '<td>' . $resultat['Nom_produit'] . '</td>';
+            echo '<td>' . $prix . ' €</td>';
+            echo '<td>' . $co . '</td>';
+            echo '</tr>';
+            $somme += $prix;
+
+            $_SESSION['panierAcceuil']['produits'] [] = array('img' => $resultat["Img"], 'nom' => $resultat['Nom_produit'], 'prix' => $resultat['Prix']);
+          }
+          if($somme > 0)
+            $_SESSION['panierAcceuil']['somme'] = $somme;
+          
+
+          echo '<tr><td>Total</td><td>' .$somme .' €</td></table>';
+          ?>
+          <form class="formAjout" style="display:none" id='address'>
+                                    <div class="form-group">
+                                        <label for="address">Adresse :</label>
+                                        <input type="text" id="addressIn" name="address" required><br><br>
+                                    </div>
+          </form><br><br>
+          <button type="button" class="btn btn-danger">Vider</button>
+          <button type="button" class="btn btn-success" id="commander" onclick="getAddress()">Commander</button>
+
+          
         </div>
 
         <?php
-          $isAdmin = false;
-          if(isset($_SESSION['role']) && !empty($_SESSION['role'])){
-            include_once 'ongletsAdmin.php';
-            $isAdmin = true;
-          }
+        $isAdmin = false;
+        if (isset($_SESSION['role']) && !empty($_SESSION['role'])) {
+          include_once 'ongletsAdmin.php';
+          $isAdmin = true;
+        }
         ?>
 
       </div>
@@ -222,6 +286,45 @@ $user = $stmt->fetch(PDO::FETCH_ASSOC);
 
 
     <script>
+function getAddress() {
+  let address_, produits;
+  if(document.getElementById('addressIn').value == ""){
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(
+        function(position) {
+          var latitude = position.coords.latitude;
+          var longitude = position.coords.longitude;
+          $.ajax({
+            url: "../../test.php",
+            type: "GET",
+            data: {lat: latitude, long: longitude},
+            success: function(address) {
+              produits = <?php echo json_encode($tab) ?>;
+              address_ = address;
+              commander(produits, address_);
+            },
+            error: function(jqXHR, textStatus, errorThrown) {
+              console.log('Erreur : ' + textStatus + ' - ' + errorThrown);
+            }
+          });
+        },
+        function(error) {
+          console.log(error);
+          alert("La géolocalisation n'est pas autorisée par votre navigateur.");
+          document.getElementById('address').style.display = "block";
+        }
+      );
+    }
+  } else {
+    address_ = document.getElementById('addressIn').value;
+    produits = <?php echo json_encode($tab) ?>;
+    commander(produits, address_);
+  }
+}
+
+
+
+
       // ********* Evènement sur le bouton modifier *********************
 
       const login = document.getElementById("login");
@@ -298,7 +401,7 @@ $user = $stmt->fetch(PDO::FETCH_ASSOC);
 
       });
 
-     
+
 
       // Fonction pour activer/désactiver les accordeons
       var acc = document.getElementsByClassName("accordion");
@@ -341,7 +444,7 @@ $user = $stmt->fetch(PDO::FETCH_ASSOC);
     <!-- IF ADMIN -->
     <script>
       var isAdmin = "<?php echo $isAdmin ?>";
-      if(isAdmin){
+      if (isAdmin) {
         var elements = document.querySelectorAll('.ifAdmin');
         elements.forEach(elt => {
           elt.style.display = "block";

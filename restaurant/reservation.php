@@ -53,6 +53,8 @@ if (isset($_POST['submit'])) {
                     $query4->execute([$resp2[end(array_keys($resp2))]['Id_table'], $resp['Id_client'], $heure, $date, intval($no_of_persons), $emplement, $occasion]);
                     if ($pdo->commit()) {
                         echo "<br>Insertion reserver OK<br>Votre table a été reservée";
+                        $_SESSION['reservationMade'] = true;
+                        header('Location:index.php');
                     }
                 }
             }

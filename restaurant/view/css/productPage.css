@@ -718,52 +718,52 @@
       position: absolute;
       right: 0
   }
-  .text {
+  .textP {
       margin: 0 auto;
       padding: 90px 0 165px;
       width: 700px
   }
-  .text h1 {
+  .textP h1 {
       font-family: "montserratbold", sans-serif;
       font-size: 369.23077%;
       line-height: 125%;
       margin-bottom: 60px
   }
-  .text h2 {
+  .textP h2 {
       font-family: "montserratregular", sans-serif;
       font-size: 184.61538%;
       line-height: 133.33333%;
       margin: 55px 0 17px
   }
-  .text p {
+  .textP p {
       font-size: 138.46154%;
       line-height: 177.77778%;
       margin: 17px 0 28px
   }
-  .text strong {
+  .textP strong {
       font-family: "montserratbold", sans-serif
   }
-  .text em {
+  .textP em {
       font-style: italic
   }
-  .text *:last-child {
+  .textP *:last-child {
       margin-bottom: 0
   }
-  .text ul {
+  .textP ul {
       font-size: 115.38462%;
       line-height: 173.33333%;
       margin: 17px 0 28px 40px
   }
-  .text ul li {
+  .textP ul li {
       list-style-type: disc;
       padding: 7px 0 7px 7px
   }
-  .text ol {
+  .textP ol {
       font-size: 115.38462%;
       line-height: 173.33333%;
       margin: 17px 0 28px 40px
   }
-  .text ol li {
+  .textP ol li {
       list-style-type: decimal;
       padding: 7px 0 7px 7px
   }
@@ -1076,7 +1076,7 @@
   .collection-list a .img .show {
       opacity: 1
   }
-  .collection-list a .text {
+  .collection-list a .textP {
       -moz-transition: all 0.3s ease-in-out;
       -o-transition: all 0.3s ease-in-out;
       -webkit-transition: all 0.3s ease-in-out;
@@ -1093,16 +1093,16 @@
       padding: 6px 10px 3px;
       position: absolute
   }
-  .collection-list a .text strong {
+  .collection-list a .textP strong {
       font-family: "robotoregular", sans-serif;
       display: block
   }
-  .collection-list a .text>span {
+  .collection-list a .textP>span {
       font-family: "robotoblack", sans-serif;
       display: block;
       margin-bottom: 2px
   }
-  .collection-list a .text>span>span {
+  .collection-list a .textP>span>span {
       font-family: "robotoregular", sans-serif;
       opacity: 0.5
   }
@@ -1164,15 +1164,15 @@
   .homepage-banners {
       background-color: #f7f7fa
   }
-  .homepage-banners a .text {
+  .homepage-banners a .textP {
       display: inline-block;
       padding: 6px 10px;
       width: auto
   }
-  .homepage-banners a .text>strong {
+  .homepage-banners a .textP>strong {
       font-family: "robotoblack", sans-serif
   }
-  .homepage-banners a .text>span {
+  .homepage-banners a .textP>span {
       font-family: "robotoregular", sans-serif;
       margin: 6px 0 0
   }
@@ -2423,33 +2423,33 @@
           letter-spacing: 2px
       }
       ._cont,
-      .text {
+      .textP {
           width: 90%
       }
-      .text {
+      .textP {
           padding: 160px 0 120px
       }
-      .text h1 {
+      .textP h1 {
           font-size: 276.92308%;
           line-height: 116.66667%;
           margin-bottom: 40px
       }
-      .text h2 {
+      .textP h2 {
           font-size: 161.53846%;
           line-height: 133.33333%
       }
-      .text p {
+      .textP p {
           font-size: 130.76923%;
           line-height: 164.70588%
       }
-      .text ul {
+      .textP ul {
           font-size: 107.69231%;
           line-height: 171.42857%
       }
-      .text ul li:before {
+      .textP ul li:before {
           top: 17px
       }
-      .text ol {
+      .textP ol {
           font-size: 107.69231%;
           line-height: 171.42857%
       }
@@ -2546,7 +2546,7 @@
       div.grid_info:after {
           content: "< 760px"
       }
-      .text,
+      .textP,
       ._cont2 {
           width: 90%
       }
@@ -2954,33 +2954,33 @@
       .breadcrumb {
           display: none
       }
-      .text {
+      .textP {
           padding: 20px 0 96px
       }
-      .text h1 {
+      .textP h1 {
           font-size: 184.61538%;
           line-height: 133.33333%;
           margin-bottom: 25px
       }
-      .text h2 {
+      .textP h2 {
           font-size: 138.46154%;
           line-height: 133.33333%;
           margin: 35px 0 17px
       }
-      .text p {
+      .textP p {
           font-size: 107.69231%;
           line-height: 171.42857%;
           margin: 17px 0 23px
       }
-      .text ul {
+      .textP ul {
           font-size: 100%;
           line-height: 169.23077%;
           margin-left: 15px
       }
-      .text ul li:before {
+      .textP ul li:before {
           top: 16px
       }
-      .text ol {
+      .textP ol {
           font-size: 100%;
           line-height: 169.23077%;
           margin-left: 15px
