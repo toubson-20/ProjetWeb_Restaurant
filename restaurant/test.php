@@ -1,61 +1,32 @@
-<!-- HTML -->
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<?php
+session_start();
+// Récupérez les coordonnées de latitude et longitude de l'utilisateur
 
-<!-- Afficher la valeur par défaut dans un input disabled -->
-<p for="prenom">Prenom : <input type="text" id="prenom" class="profil" value="John Doe" disabled></p>
+if (isset($_GET)) {
+    $latitude = $_GET['lat'];
+    $longitude = $_GET['long'];
 
-<!-- Bouton pour envoyer la valeur à PHP via AJAX -->
-<button class="primary bt" id="envoyer" style="background-color: orangered;">Envoyer</button>
-
-<!-- Div pour afficher le résultat -->
-<div id="resultat"></div>
-
-<script>
-    // Fonction pour envoyer la valeur du champ de texte via AJAX
-    function envoyer_valeur() {
-        // Obtenir la valeur du champ de texte
-        const valeur = $('#prenom').val();
-
-        // Envoyer la valeur à PHP via AJAX
-        $.ajax({
-            url: 'test.php',
-            method: 'POST',
-            data: {
-                parametre: valeur
-            },
-            success: function(resultat) {
-                // Afficher le résultat dans la div prévue à cet effet
-                $('#resultat').html(resultat);
-            },
-            error: function() {
-                // En cas d'erreur, afficher un message
-                $('#resultat').html('Erreur lors de l\'envoi de la requête AJAX.');
-            }
-        });
+    // Utilisez un service de géocodage pour traduire les coordonnées en adresse
+    $url = "https://nominatim.openstreetmap.org/reverse?format=jsonv2&lat=$latitude&lon=$longitude";
+    $context = stream_context_create(array('http' => array('header'=>'User-Agent: Mozilla/5.0 (Windows NT 6.1; WOW64; rv:77.0) Gecko/20190101 Firefox/77.0')));
+    $response = @file_get_contents($url, false, $context);
+    if ($response === false) {
+        // Gérer l'erreur si la requête échoue
+        echo "Erreur : Impossible de se connecter au service de géocodage.";
+    } else {
+        // Traduire la réponse JSON en tableau associatif
+        $adresse = json_decode($response, true);
+        
+        if (isset($adresse['display_name'])) {
+            // Afficher l'adresse de l'utilisateur
+            echo $adresse['display_name'];
+            $_SESSION['localisationFound'] = true;
+        } else {
+            // Gérer l'erreur si l'adresse n'est pas disponible dans la réponse
+            echo "Erreur : Impossible de récupérer votre adresse actuelle.";
+            $_SESSION['localisationFound'] = false;
+        }
     }
-
-    // Attacher la fonction envoyer_valeur à l'événement "click" du bouton "Envoyer"
-    $('#envoyer').click(envoyer_valeur);
-</script>
-
-<?php
-// Récupérer la valeur envoyée par AJAX et l'afficher
-if (isset($_POST['parametre'])) {
-    $x = $_POST['parametre'];
-    echo "La valeur envoyée est : " . $x;
 }
-?>
-
-
-
-save.addEventListener("click", () => {
-<?php
-// // Préparation de la requête
-// $stmt = $pdo->prepare('SELECT * FROM users WHERE id_user = ?');
-// $stmt->execute(array($id));
-
-// // Récupération du résultat
-// $user = $stmt->fetch(PDO::FETCH_ASSOC);
-echo "oiui";
 
 ?>
