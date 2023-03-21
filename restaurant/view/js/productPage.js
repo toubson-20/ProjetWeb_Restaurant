@@ -23,7 +23,7 @@ function modifier_Produit(){
   // Envoi des données via AJAX
   var that = document;
   $.ajax({
-      url: 'https://localhost/restaurant/view/profil/maj.php',
+      url: '../profil/maj.php',
       type: 'POST',
       data: {
           id: id,

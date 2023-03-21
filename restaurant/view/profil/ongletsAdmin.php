@@ -118,7 +118,7 @@
                                         </select>
                                     </div>
 
-                                    <input type="submit" value="Soumettre" name="enrg" id="enrg">
+                                    <input type="button" value="Soumettre" name="enrg" id="enrg">
                                 </form>
                             </div>
                         </div>
@@ -244,7 +244,7 @@
     function supprimerProduit(productId) {
         if (confirm('Voulez-vous vraiment supprimer le produit n°' + productId + ' ?')) {
             $.ajax({
-                url: 'https://localhost/restaurant/view/profil/suppression.php',
+                url: './suppression.php',
                 type: 'GET',
                 data: {
                     id: productId
@@ -283,7 +283,7 @@
         document.getElementById("id01").style.display = "block";
         document.getElementById("header").style.display = "none";
         $.ajax({
-            url: 'https://localhost/restaurant/view/voirProduit.php',
+            url: '../voirProduit.php',
             type: 'GET',
             data: item,
             success: function(response) {
@@ -300,7 +300,7 @@
         document.getElementById("id01").style.display = "block";
         document.getElementById("header").style.display = "none";
         $.ajax({
-            url: 'https://localhost/restaurant/view/modifierProduit.php',
+            url: '../modifierProduit.php',
             type: 'GET',
             data: item,
             success: function(response) {
@@ -334,7 +334,7 @@
 
         // Envoi des données via AJAX
         $.ajax({
-            url: 'https://localhost/restaurant/view/profil/maj.php',
+            url: './maj.php',
             type: 'POST',
             data: {
                 nom: nom,
