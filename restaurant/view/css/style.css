@@ -64,6 +64,25 @@
     font-style: normal;
 }
 
+.pencil-btn {
+    display: inline-block;
+    background-color: white;
+    color: #ffffff;
+    border: none;
+    padding: 5px 10px;
+    font-size: 15px;
+    cursor: pointer;
+  }
+
+  .pencil-btn:hover{
+    background-color: rgb(230, 145, 114);
+  }
+  
+  .pencil-btn i {
+    margin-right: 5px;
+  }  
+
+
 body{
 	color:#686868;
 	font-size:14px;

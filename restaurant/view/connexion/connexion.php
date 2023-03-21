@@ -16,9 +16,6 @@ if (isset($_POST['submit'])) {
     $mdp = $_POST['password'];
     $email = $_POST['email'];
 
-    echo $mdp;
-    echo $email;
-
     // Préparation de la requête
     $stmt = $pdo->prepare('SELECT * FROM users WHERE login = ?');
     $stmt->execute(array($email));
@@ -26,15 +23,17 @@ if (isset($_POST['submit'])) {
     // Récupération du résultat
     $user = $stmt->fetch(PDO::FETCH_ASSOC);
 
+    // $mdpVerify = password_hash($mdp, PASSWORD_DEFAULT);
+
     // Vérification du mot de passe
-    // if ($user && password_verify($mdp, $user['mdp'])) { on va l'utiliser quand on va crypter le code
+    // if ($user && password_verify($mdp, $user['mdp'])) {
     if ($user && ($mdp == $user['mdp'])) {
         $_SESSION['name'] = $user['preNom'] . " " . $user['nom'];
         $_SESSION['id'] = $user['Id_user'];
         $_SESSION['email'] = $user['login'];
         $_SESSION['role'] = $user['role'];
         // Connexion réussie
-        echo 'Connexion réussie !';
+        // echo 'Connexion réussie !';
         $_SESSION['connected'] = true;
         echo '<script>
                 document.location.href="../../index.php";
@@ -42,6 +41,8 @@ if (isset($_POST['submit'])) {
             </script>';
     } else {
         // Erreur d'identification
-        echo 'Identifiants incorrects.';
+        // echo '<script>alert(' . $mdpVerify . ')</script>';
+        echo '<script>alert("Identifiants incorrects !")</script>';
+        echo '<script>document.location.href="./connexion.html"; </script>';
     }
 }
