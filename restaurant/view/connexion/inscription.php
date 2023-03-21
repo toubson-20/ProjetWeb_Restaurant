@@ -55,7 +55,7 @@ if (isset($_POST['submit'])) {
 
         </script>';
             } elseif (!preg_match("#[\W]+#", $mdp)) {
-                echo "<script>alert('Le mot de passe doit contenir au moins 1 caractère spécial')</script>";
+                echo  "<script>alert('Le mot de passe doit contenir au moins 1 caractère spécial')</script>";
                 echo '<script>
                      document.location.href="./connexion.html";
 
