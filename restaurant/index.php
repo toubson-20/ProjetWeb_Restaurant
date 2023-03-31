@@ -3,14 +3,14 @@ session_start();
 $connexion = false;
 $connected = false;
 $nom = null;
-if(isset($_SESSION['connected'])){
+if (isset($_SESSION['connected'])) {
     $connected = $_SESSION["connected"];
     $nom = $_SESSION['name'];
 
     $connexion = true;
 }
 
-  
+
 
 ?>
 <!DOCTYPE html>
@@ -186,7 +186,7 @@ if(isset($_SESSION['connected'])){
                             }
                             createElements(
                                 'SELECT * FROM produit WHERE MenuJour = 1',
-                                array('Id_Produit','Nom_produit', 'Description','Prix','Img'),
+                                array('Id_Produit', 'Nom_produit', 'Description', 'Prix', 'Img'),
                                 '<div class="item item-type-zoom">
                                                 <a href="#" class="item-hover">
                                                     <div class="item-info">
@@ -259,7 +259,7 @@ if(isset($_SESSION['connected'])){
                                 <?php
                                 createElements(
                                     "SELECT * FROM produit WHERE Type_plat = 'entree'",
-                                    array('Id_Produit','Nom_produit', 'Description','Prix','Img'),
+                                    array('Id_Produit', 'Nom_produit', 'Description', 'Prix', 'Img'),
                                     '<div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 ">
                                                     <div class="offer-item">
                                                     <img src="Img" alt="" class="img-responsive" onclick="ouvrir(\'Id_Produit\',\'Nom_produit\', \'Prix\', \'Description\', \'Img\')">
@@ -280,7 +280,7 @@ if(isset($_SESSION['connected'])){
                                 <?php
                                 createElements(
                                     "SELECT * FROM produit WHERE Type_plat = 'plat'",
-                                    array('Id_Produit','Nom_produit', 'Description','Prix','Img'),
+                                    array('Id_Produit', 'Nom_produit', 'Description', 'Prix', 'Img'),
                                     '<div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 ">
                                         <div class="offer-item">
                                             <img src="Img" alt="" class="img-responsive" onclick="ouvrir(\'Id_Produit\',\'Nom_produit\', \'Prix\', \'Description\', \'Img\')">
@@ -300,7 +300,7 @@ if(isset($_SESSION['connected'])){
                                 <?php
                                 createElements(
                                     "SELECT * FROM produit WHERE Type_plat = 'dessert'",
-                                    array('Id_Produit','Nom_produit', 'Description','Prix','Img'),
+                                    array('Id_Produit', 'Nom_produit', 'Description', 'Prix', 'Img'),
                                     '<div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 ">
                                         <div class="offer-item">
                                         <img src="Img" alt="" class="img-responsive" onclick="ouvrir(\'Id_Produit\',\'Nom_produit\', \'Prix\', \'Description\', \'Img\')">
@@ -320,7 +320,7 @@ if(isset($_SESSION['connected'])){
                                 <?php
                                 createElements(
                                     "SELECT * FROM produit WHERE Type_plat = 'boisson'",
-                                    array('Id_Produit','Nom_produit', 'Description','Prix','Img'),
+                                    array('Id_Produit', 'Nom_produit', 'Description', 'Prix', 'Img'),
                                     '<div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 ">
                                         <div class="offer-item">
                                             <img src="Img" alt="" class="img-responsive" onclick="ouvrir(\'Id_Produit\',\'Nom_produit\', \'Prix\', \'Description\', \'Img\')">
@@ -617,23 +617,24 @@ if(isset($_SESSION['connected'])){
         <a class="panel-button gray2"><i class="fa fa-shopping-cart fa-2x"></i></a>
         <!-- Colors -->
         <div class="segment">
-            <h4 class="gray2 normal no-padding">Pannier</h4>
+            <h4 class="gray2 normal no-padding">Panier</h4>
             <table class="table table-striped table-bordered">
-                    <?php 
-                    if(!empty($_SESSION['panierAcceuil'])){
-                        echo "<script> document.getElementById('panierAcc').revome() </script>";
-                        foreach ($_SESSION['panierAcceuil']['produits'] as $key => $value) {
-                            echo '<tr class="panierAcc">';
-                                echo '<td class="panierImg"><img src="' . $value['img'] .'"></td>';
-                                echo '<td class="panierNom">' .$value['nom'] . ' <br><span class="panierPrix"> ' .$value['prix'] . '€</span></td>';
-                            echo '</tr>';
-                        }
-                    ?>
+                <?php
+                if (!empty($_SESSION['panierAcceuil'])) {
+                    echo "<script> document.getElementById('panierAcc').revome() </script>";
+                    foreach ($_SESSION['panierAcceuil']['produits'] as $key => $value) {
+                        echo '<tr class="panierAcc">';
+                        echo '<td class="panierImg"><img src="' . $value['img'] . '"></td>';
+                        echo '<td class="panierNom">' . $value['nom'] . ' <br><span class="panierPrix"> ' . $value['prix'] . '€</span></td>';
+                        echo '</tr>';
+                    }
+                ?>
                     <tr class="total">
-                        <td >Total</td>
-                        <td><?php echo $_SESSION['panierAcceuil']['somme']; }?>,00€</td>
+                        <td>Total</td>
+                        <td><?php echo $_SESSION['panierAcceuil']['somme'];
+                        } ?>,00€</td>
                     </tr>
-                <hr/>
+                    <hr />
             </table>
         </div>
     </section>
@@ -641,8 +642,6 @@ if(isset($_SESSION['connected'])){
     <!-- SCRIPT -->
 
     <script>
-
-
         var isconnected = <?php echo ($connexion) ? json_encode($connected) : false; ?>;
         var name = <?php echo (!empty($nom)) ? json_encode($nom) : null; ?>;
         //console.log(name);
@@ -703,15 +702,17 @@ if(isset($_SESSION['connected'])){
                     document.getElementById('productModal').innerHTML = result;
                     console.log("vbn,;cghjk")
                     $(".ajout").click(it => {
-                        id = document.getElementById('id_prod').value; 
+                        id = document.getElementById('id_prod').value;
                         console.log(id);
                         $.ajax({
                             url: "view/ajouter_panier.php",
                             method: "GET",
-                            data: {produit_id : id},
+                            data: {
+                                produit_id: id
+                            },
                             success: (data) => {
                                 alert(data)
-                                document.location.href="./view/profil/profil.php";
+                                // document.location.href="./view/profil/profil.php";
                             }
                         })
                     })
@@ -721,16 +722,15 @@ if(isset($_SESSION['connected'])){
                 }
             });
         }
-        
     </script>
 
-<?php
-    if(isset($_SESSION['reservationMade'])){
-        if($_SESSION['reservationMade']){
-            echo "<script> alert('MERCI POUR VOTRE RESERVATION') </script>";
+    <?php
+    if (isset($_SESSION['reservationMade'])) {
+        if ($_SESSION['reservationMade']) {
+            echo "<script> alert('RESERVATION ENREGISTREE') </script>";
         }
     }
-?>
+    ?>
 </body>
 
 </html>

@@ -89,10 +89,12 @@ $user = $stmt->fetch(PDO::FETCH_ASSOC);
                 <ul class="nav navbar-nav navbar-right">
                   <li class="connexion" id="connected"><a id="userName"><?php echo $name ?></a></li>
                   <li sytle="cursor:pointer !important;">
-                  <a id="userName" sytle="cursor:pointer !important;"><form method="post" action="profil.php">
-                      <input type="text" style="display: none;" name="connected" value=false>
-                      <button  name="submit" type="submit" sytle="cursor:pointer !important;">Déconnexion</button>
-                    </form></a>
+                    <a id="userName" sytle="cursor:pointer !important;">
+                      <form method="post" action="profil.php">
+                        <input type="text" style="display: none;" name="connected" value=false>
+                        <button name="submit" type="submit" sytle="cursor:pointer !important;">Déconnexion</button>
+                      </form>
+                    </a>
 
                     <?php
                     if (isset($_POST['submit'])) {
@@ -134,6 +136,7 @@ $user = $stmt->fetch(PDO::FETCH_ASSOC);
         <li class="active"><a href="#tab1">PROFIL</a></li>
         <li><a href="#tab2">RESERVATIONS</a></li>
         <li><a href="#tab3">PANIER</a></li>
+        <li><a href="#tab7">COMMANDES</a></li>
         <li class="ifAdmin"><a href="#tab4">PRODUIT</a></li>
         <li class="ifAdmin"><a href="#tab5">STATISTIQUES</a></li>
         <li class="ifAdmin"><a href="#tab6">EMPLOYE</a></li>
@@ -231,7 +234,7 @@ $user = $stmt->fetch(PDO::FETCH_ASSOC);
 
           // Afficher les données du panier dans un tableau
 
-          echo '<table>';
+          echo '<table id="tablePanier">';
           echo '<tr><th>Produit</th><th>Prix</th><th>Quantité</th></tr>';
           $tab = [];
           $somme = 0;
@@ -260,24 +263,24 @@ $user = $stmt->fetch(PDO::FETCH_ASSOC);
             echo '</tr>';
             $somme += $prix;
 
-            $_SESSION['panierAcceuil']['produits'] [] = array('img' => $resultat["Img"], 'nom' => $resultat['Nom_produit'], 'prix' => $resultat['Prix']);
+            $_SESSION['panierAcceuil']['produits'][] = array('img' => $resultat["Img"], 'nom' => $resultat['Nom_produit'], 'prix' => $resultat['Prix'], 'quantite' => $co);
           }
-          if($somme > 0)
+          if ($somme > 0)
             $_SESSION['panierAcceuil']['somme'] = $somme;
-          
 
-          echo '<tr><td>Total</td><td>' .$somme .' €</td></table>';
+
+          echo '<tr><td>Total</td><td>' . $somme . ' €</td></table>';
           ?>
-          <form class="formAjout" style="display:none" id='address'>
-                                    <div class="form-group">
-                                        <label for="address">Adresse :</label>
-                                        <input type="text" id="addressIn" name="address" required><br><br>
-                                    </div>
+          <form class="formAjout" id='address'><br><br>
+            <div class="form-group">
+              <label for="address">Adresse de livraison :</label>
+              <input type="text" id="addressIn" name="address" required><br><br>
+            </div>
           </form><br><br>
-          <button type="button" class="btn btn-danger">Vider</button>
-          <button type="button" class="btn btn-success" id="commander" onclick="getAddress()">Commander</button>
+          <button type="button" class="btn btn-danger" onclick="viderPanier()">Vider</button>
+          <button type="button" class="btn btn-success" id="commander" onclick="commanderP()">Commander</button>
 
-          
+
         </div>
 
         <?php
@@ -296,41 +299,44 @@ $user = $stmt->fetch(PDO::FETCH_ASSOC);
 
 
     <script>
-function getAddress() {
-  let address_, produits;
-  if(document.getElementById('addressIn').value == ""){
-    if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition(
-        function(position) {
-          var latitude = position.coords.latitude;
-          var longitude = position.coords.longitude;
-          $.ajax({
-            url: "../../test.php",
-            type: "GET",
-            data: {lat: latitude, long: longitude},
-            success: function(address) {
-              produits = <?php echo json_encode($tab) ?>;
-              address_ = address;
-              commander(produits, address_);
-            },
-            error: function(jqXHR, textStatus, errorThrown) {
-              console.log('Erreur : ' + textStatus + ' - ' + errorThrown);
-            }
-          });
-        },
-        function(error) {
-          console.log(error);
-          alert("La géolocalisation n'est pas autorisée par votre navigateur.");
-          document.getElementById('address').style.display = "block";
+      function viderPanier() {
+        // Supprimer les données du tableau HTML
+        if (window.confirm("Vous allez vider le panier")) {
+          let table = document.getElementById("tablePanier");
+          let rowCount = table.rows.length;
+          for (let i = 1; i < rowCount - 1; i++) {
+            table.deleteRow(1);
+          }
+
+          // Supprimer les données du tableau en PHP (session)
+          fetch('viderSessionPanier.php', {
+              method: 'POST'
+            })
+            .then(response => response.text())
+            .then(data => console.log(data))
+            .catch(error => console.error(error));
         }
-      );
-    }
-  } else {
-    address_ = document.getElementById('addressIn').value;
-    produits = <?php echo json_encode($tab) ?>;
-    commander(produits, address_);
-  }
-}
+      }
+
+      function commanderP() {
+        produits = <?php echo json_encode($tab) ?>;
+        let addr = document.getElementById("addressIn").value;
+        let addrT = addr.split(" ");
+        let empty = true;
+        addrT.forEach(element => {
+          if (element.length == 0) {
+            empty = false;
+            return;
+          }
+        });
+
+        if (addrT.length < 3 || !empty)
+          alert("Adresse invalide");
+        else {
+          commander(produits, addr);
+          viderPanier();
+        }
+      }
 
 
 
@@ -383,6 +389,7 @@ function getAddress() {
         var mdp = $('#mdp').val();
         var mdp1 = $('#mdp1').val();
         var mdp2 = $('#mdp2').val();
+        $("#bt-modif").hide();
 
         if (verify) {
           if (mdp1.length == 0 || mdp2.length == 0) {
