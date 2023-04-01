@@ -151,16 +151,20 @@ $user = $stmt->fetch(PDO::FETCH_ASSOC);
           <div class="contain-info">
             <?php
             echo '<form id="profil-form">';
-            echo '<p>Login : <input type="text" id="login" name="login" class="profil" value=' . $user['login'] . ' disabled></p>';
-            echo '<p for="nom">Nom : <input type="text" id="nom" name="nom" class="profil" value=' . $user['nom'] . ' disabled></p>';
+            echo '<p>Login : <input type="text" id="login" name="login" class="profil" value=' . $user['login'] . ' disabled style="width: 300px; margin-left:20px;"></p>';
             echo '<p for="prenom">Prenom : <input type="text" id="prenom" name="prenom" class="profil" value=' . $user['preNom'] . ' disabled></p>';
+            echo '<p for="nom">Nom : <input type="text" id="nom" name="nom" class="profil" value=' . $user['nom'] . ' disabled style="margin-left:21px;></p>';
             echo '<p for="mdp">Mot de passe : <input type="password" name="mdp" id="mdp" class="profil" value=' . $user['mdp'] . ' disabled><button id="bt-modif" style="display:none" class="pencil-btn"><span class="glyphicon glyphicon-pencil"></span></button></p>';
             echo '<p id="p1" style="display:none">Ancien mot de passe : <input type="password" name="mdp1" id="mdp1" class="profil" ></p>';
             echo '<p id="p2" style="display:none">Nouveau mot de passe : <input type="password" name="mdp2" id="mdp2" class="profil"></p>';
             echo '</form>';
             ?>
-            <button class="primary bt" id="modifier" style="background-color: orangered;">Modifier</button>
-            <button class="primary bt enrg" id="save" name="submit" style="background-color: green;">Enregistrer</button>
+
+            <span>
+              <button class="primary bt" id="annuler" style="background-color: blue;">Annuler</button>
+              <button class="primary bt" id="modifier" style="background-color: orangered;">Modifier</button>
+              <button class="primary bt enrg" id="save" name="submit" style="background-color: green;">Enregistrer</button>
+            </span>
 
 
           </div>
@@ -285,7 +289,7 @@ $user = $stmt->fetch(PDO::FETCH_ASSOC);
 
         <?php
         $isAdmin = false;
-        if (isset($_SESSION['role']) && !empty($_SESSION['role'])) {
+        if (isset($_SESSION['role']) && $_SESSION['role'] === "admin") {
           include_once 'ongletsAdmin.php';
           $isAdmin = true;
         }
@@ -299,12 +303,18 @@ $user = $stmt->fetch(PDO::FETCH_ASSOC);
 
 
     <script>
+      const nomUser = "<?= $user['nom'] ?>";
+      const prenomUser = "<?= $user['preNom'] ?>";
+      const loginUser = "<?= $user['login'] ?>";
+      const mdpUser = "<?= $user['mdp'] ?>";
+
+
       function viderPanier() {
         // Supprimer les données du tableau HTML
         if (window.confirm("Vous allez vider le panier")) {
           let table = document.getElementById("tablePanier");
           let rowCount = table.rows.length;
-          for (let i = 1; i < rowCount - 1; i++) {
+          for (let i = 1; i < rowCount; i++) {
             table.deleteRow(1);
           }
 
@@ -352,6 +362,7 @@ $user = $stmt->fetch(PDO::FETCH_ASSOC);
       const save = document.getElementById("save");
       const enrg = document.getElementById("enrg");
       const btModif = document.getElementById("bt-modif");
+      const annuler = document.getElementById("annuler");
 
       modifier.addEventListener("click", () => {
         $('#nom').prop('disabled', false);
@@ -367,15 +378,43 @@ $user = $stmt->fetch(PDO::FETCH_ASSOC);
         prenom.style.border = "1px solid orangered";
 
         save.style.display = "inline-block";
+
+        btModif.addEventListener("click", () => {
+          verify = true;
+          $("#p1").show();
+          $("#p2").show();
+          $("#mdp1").show();
+          $("#mdp2").show();
+          $("#mdp1").css("border", "1px solid orangered");
+          $("#mdp2").css("border", "1px solid orangered");
+        });
+
+        annuler.addEventListener("click", () => {
+          $('#nom').val(nomUser);
+          $('#login').val(loginUser);
+          $('#prenom').val(prenomUser);
+          $('#mdp').val(mdpUser);
+          $('#mdp1').val("");
+          $('#mdp2').val("");
+
+
+          $('#nom').prop('disabled', true);
+          $('#login').prop('disabled', true);
+          $('#prenom').prop('disabled', true);
+
+          $("#nom").css("border", "none");
+          $("#login").css("border", "none");
+          $("#prenom").css("border", "none");
+          $("#bt-modif").hide();
+          $("#p1").hide();
+          $("#p2").hide();
+          $('#mdp1').hide();
+          $('#mdp2').hide();
+          $("#save").hide();
+        });
       });
 
-      btModif.addEventListener("click", () => {
-        verify = true;
-        $("#p1").show();
-        $("#p2").show();
-        $("#mdp1").css("border", "1px solid orangered");
-        $("#mdp2").css("border", "1px solid orangered");
-      });
+
 
       save.addEventListener("click", () => {
 
@@ -395,9 +434,7 @@ $user = $stmt->fetch(PDO::FETCH_ASSOC);
           if (mdp1.length == 0 || mdp2.length == 0) {
             alert("champ(s) vide(s)");
             die();
-          }
-          // if (password_verify(mdp1, mdp)) {
-          else if (mdp1 == mdp) {
+          } else if (password_verify(mdp1, mdp)) {
             var mdp2 = $('#mdp2').val();
           } else {
             alert("incorrects");

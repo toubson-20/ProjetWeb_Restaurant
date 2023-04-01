@@ -452,7 +452,7 @@ if (isset($_SESSION['connected'])) {
                                 <div class="form-box">
                                     <select name="occasion" id="occasion" class="selectpicker">
                                         <option selected disabled>Occasion</option>
-                                        <option>Marriage</option>
+                                        <option>Mariage</option>
                                         <option>Anniversaire</option>
                                         <option>Célebration</option>
                                         <option>Classique</option>
@@ -630,9 +630,9 @@ if (isset($_SESSION['connected'])) {
                     }
                 ?>
                     <tr class="total">
-                        <td>Total</td>
-                        <td><?php echo $_SESSION['panierAcceuil']['somme'];
-                        } ?>,00€</td>
+                        <td style="color: black;">Total</td>
+                        <td style="color: black;"><?php echo $_SESSION['panierAcceuil']['somme'];
+                                                } ?>,00€</td>
                     </tr>
                     <hr />
             </table>
@@ -700,7 +700,7 @@ if (isset($_SESSION['connected'])) {
                 success: function(result) {
                     // Afficher la réponse de la pageB dans la console
                     document.getElementById('productModal').innerHTML = result;
-                    console.log("vbn,;cghjk")
+                    console.log("ok")
                     $(".ajout").click(it => {
                         id = document.getElementById('id_prod').value;
                         console.log(id);

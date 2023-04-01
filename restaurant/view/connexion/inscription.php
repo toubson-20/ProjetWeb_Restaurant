@@ -62,7 +62,7 @@ if (isset($_POST['submit'])) {
                       </script>';
             } else {
                 $validation = true;
-                // $mdp = password_hash($mdp, PASSWORD_DEFAULT);
+                $mdp = password_hash($mdp, PASSWORD_DEFAULT);
             }
         }
 

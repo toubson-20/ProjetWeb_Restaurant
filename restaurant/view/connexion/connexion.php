@@ -26,8 +26,8 @@ if (isset($_POST['submit'])) {
     // $mdpVerify = password_hash($mdp, PASSWORD_DEFAULT);
 
     // Vérification du mot de passe
-    // if ($user && password_verify($mdp, $user['mdp'])) {
-    if ($user && ($mdp == $user['mdp'])) {
+    if ($user && password_verify($mdp, $user['mdp'])) {
+        // if ($user && ($mdp == $user['mdp'])) {
         $_SESSION['name'] = $user['preNom'] . " " . $user['nom'];
         $_SESSION['id'] = $user['Id_user'];
         $_SESSION['email'] = $user['login'];
