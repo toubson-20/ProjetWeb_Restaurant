@@ -621,11 +621,10 @@ if (isset($_SESSION['connected'])) {
             <table class="table table-striped table-bordered">
                 <?php
                 if (!empty($_SESSION['panierAcceuil'])) {
-                    echo "<script> document.getElementById('panierAcc').revome() </script>";
                     foreach ($_SESSION['panierAcceuil']['produits'] as $key => $value) {
                         echo '<tr class="panierAcc">';
                         echo '<td class="panierImg"><img src="' . $value['img'] . '"></td>';
-                        echo '<td class="panierNom">' . $value['nom'] . ' <br><span class="panierPrix"> ' . $value['prix'] . '€</span></td>';
+                        echo '<td class="panierNom">' . $value['nom'] . ' <br><span class="panierPrix"> ' . $value['prix'] . '€</span><br><span class="panierPrix"> Quantité : ' . $value['quantite'] . '</span></td>';
                         echo '</tr>';
                     }
                 ?>
@@ -675,7 +674,7 @@ if (isset($_SESSION['connected'])) {
         // Get the modal
         var modal = document.getElementById('id01');
 
-        // When the user clicks anywhere outside of the modal, close it
+        // lorsque l'utilisateur clique n'importe ou en dehors
         window.onclick = function(event) {
             if (event.target == modal) {
                 modal.style.display = "none";

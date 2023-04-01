@@ -51,6 +51,7 @@ if (isset($_POST['submit'])) {
                     // Insertion dans la deuxième table
                     $query4 = $pdo->prepare("INSERT INTO reserver (Id_table, Id_client, Heure_resa, Date_resa, Nb_personnes, Emplacement, Occasion) VALUES (?, ?, ?, ?, ?, ?, ?)");
                     $query4->execute([$resp2[end(array_keys($resp2))]['Id_table'], $resp['Id_client'], $heure, $date, intval($no_of_persons), $emplement, $occasion]);
+                    $_SESSION['id_client'] = $resp['Id_client'];
                     if ($pdo->commit()) {
                         echo "<br>Insertion reserver OK<br>Votre table a été reservée";
                         $_SESSION['reservationMade'] = true;
